@@ -1,19 +1,36 @@
 package Model;
-
 import java.sql.*;
 
 public class Conexion_BD {
 
-    private static final String JDBC_URL = "";
-    private static final String JDBC_USER = "";
-    private static final String JDBC_PASSWORD = "";
-
-    //Metodo que nos permite obtener la conexion hacia la BD//
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+    /**
+     * Metodo que nos permite obtener la conexion hacia la BD
+     * static para poder acceder a ella en todo momento sin necesidad de instanciar nada
+     * @return el objeto conexion listo para usarse
+     */
+    public static Connection GetConexion() {
+        Connection conexion = null;
+        String url = "jdbc:mysql://localhost:3306/JBDB?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+        String usuario = "root";
+        String passwd = "admin";
+        try {
+            conexion = DriverManager.getConnection(url, usuario, passwd);
+            System.out.println("Conexión correcta");
+            return conexion;
+        } catch (SQLException e) {
+            System.out.println("Error en la conexión con MySQL");
+            System.out.println("Revisa que todo esté bien escrito y funcional");
+            System.out.println(e.getLocalizedMessage());
+            return  null;
+        }
     }
 
-    //4 Metodos que nos permiten cerrar los elementos de la conexion//
+    //Javadoc para los 4 siguientes metodos//
+    /**
+     * 4 Metodos que nos permiten cerrar los elementos de la conexion
+     * static para poder acceder a ellos en todo momento sin necesidad de instanciar nada
+     * @param rs, smtm, smtm, conn -> en cada uno de los 4 será el elemento que queramos cerrar
+     */
     public static void close(ResultSet rs) throws SQLException {
         rs.close();
     }
