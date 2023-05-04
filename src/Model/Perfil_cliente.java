@@ -1,9 +1,11 @@
 package Model;
 
-public class Perfil_cliente implements Perfil {
+public class Perfil_cliente {
 
     //Atributos del cliente//
     private int idCliente;
+    private String username;
+    private String password;
     private String nombre;
     private String apellido;
     private double peso;
@@ -19,7 +21,11 @@ public class Perfil_cliente implements Perfil {
     } //Constructor para identificar por ID
 
     //Constructor para introducir datos sin el id (nombre, peso...)
-    public Perfil_cliente(String nombre, String apellido, double peso, int altura, String tipo_dieta, String experiencia) {
+
+    public Perfil_cliente(String username, String password, String nombre, String apellido, double peso,
+                          int altura, String tipo_dieta, String experiencia) {
+        this.username = username;
+        this.password = password;
         this.nombre = nombre;
         this.apellido = apellido;
         this.peso = peso;
@@ -28,10 +34,46 @@ public class Perfil_cliente implements Perfil {
         this.experiencia = experiencia;
     }
 
-    //ToString para poder ver los objetos de la clase//
 
+    //ToString para poder ver los objetos de la clase//
+    @Override
+    public String toString() {
+        return "Perfil_cliente{" +
+                "idCliente=" + idCliente +
+                ", username='" + username + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", peso=" + peso +
+                ", altura=" + altura +
+                ", tipo_dieta='" + tipo_dieta + '\'' +
+                ", experiencia='" + experiencia + '\'' +
+                '}';
+    }
 
     //Getters y setters//
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public String getNombre() {
         return nombre;
     }
@@ -81,41 +123,5 @@ public class Perfil_cliente implements Perfil {
     }
     //Fin de los getters/setters //
 
-    //Metodos implementados de la interfaz Model.Perfil//
-    /**
-     * Genera un nuevo perfil de cliente
-     * @param perfil
-     * @return
-     */
-    @Override
-    public Perfil_cliente generar_perfil(Perfil_cliente perfil) {
 
-        //POR IMPLEMENTAR//
-        return null;
-    }
-
-    /**
-     * Actualiza/modifica los datos de un perfil
-     * @param perfil
-     * @return
-     */
-    @Override
-    public Perfil_cliente actualizar_perfil(Perfil_cliente perfil) {
-
-        //POR IMPLEMENTAR//
-        return null;
-    }
-
-    /**
-     * Elimina un perfil de cliente
-     * @param perfil
-     * @return
-     */
-    @Override
-    public boolean eliminar_perfil(Perfil_cliente perfil) {
-
-        //POR IMPLEMENTAR//
-        return false;
-    }
-    //Fin de los metodos de la interfaz//
 }
