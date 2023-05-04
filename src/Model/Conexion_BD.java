@@ -5,7 +5,7 @@ public class Conexion_BD {
 
     /**
      * Metodo que nos permite obtener la conexion hacia la BD
-     * static para poder acceder a ella en todo momento sin necesidad de instanciar nada
+     * static para poder acceder a ella sin necesidad de instanciar nada
      * @return el objeto conexion listo para usarse
      */
     public static Connection GetConexion() {
@@ -28,7 +28,7 @@ public class Conexion_BD {
     //Javadoc para los 4 siguientes metodos//
     /**
      * 4 Metodos que nos permiten cerrar los elementos de la conexion
-     * static para poder acceder a ellos en todo momento sin necesidad de instanciar nada
+     * static para poder acceder a ellos sin necesidad de instanciar nada
      * @param rs, smtm, smtm, conn -> en cada uno de los 4 será el elemento que queramos cerrar
      */
     public static void close(ResultSet rs) throws SQLException {
