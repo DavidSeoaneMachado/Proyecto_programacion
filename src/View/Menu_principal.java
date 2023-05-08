@@ -1,8 +1,15 @@
 package View;
 
+import Controller.Controller;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Menu_principal {
+
+    static Controller controlador = new Controller();
+    private static JFrame ventana = new JFrame("Menu principal");
     private JPanel panel1;
     private JPanel Header;
     private JButton nuevaDietaButton;
@@ -13,6 +20,7 @@ public class Menu_principal {
     private JPanel Footer;
     private JButton editarPerfilButton;
     private JButton salirButton;
+    private JLabel etiqueta_custom;
 
     /**
      * Constructor del entorno gráfico del menu principal
@@ -20,21 +28,74 @@ public class Menu_principal {
      */
     public Menu_principal() {
 
-        activar_listeners();
+        String texto_etiqueta = "Bienvenid@ " + controlador.getCliente_sesion_actual().getUsername() + ". ¿Que deseas hacer?";
+        etiqueta_custom.setText(texto_etiqueta);
+        nuevaDietaButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+            }
+        });
+        nuevoEntrenamientoButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        verPlanningActualButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        descargarPlanningButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        editarPerfilButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        salirButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
-    public void lanzar_ventana(){
-
-        JFrame ventana = new JFrame("Verdanks Fiteness");
+    /**
+     * Lanza la ventana de la interfaz grafica con una configuracion determinada e iniciando el constructor de la clase, lo que activa los listeners
+     */
+    public static void lanzar_ventana(){
         ventana.setContentPane(new Menu_principal().panel1);
         ventana.setBounds(0, 0, 1200, 800);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
-    }
-
-    private void activar_listeners() {
-
 
     }
+
+
 }

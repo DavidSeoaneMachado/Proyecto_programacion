@@ -4,14 +4,15 @@ public class Perfil_cliente {
 
     //Atributos del cliente//
     private int idCliente;
-    private String username;
-    private String password;
+
     private String nombre;
     private String apellido;
     private double peso;
     private int altura;
     private String tipo_dieta;
     private String experiencia;
+    private String username;
+    private String password;
 
 
     public Perfil_cliente() {} //constructor vacio
@@ -21,19 +22,16 @@ public class Perfil_cliente {
     } //Constructor para identificar por ID
 
     //Constructor para introducir datos sin el id (nombre, peso...)
-
-    public Perfil_cliente(String username, String password, String nombre, String apellido, double peso,
-                          int altura, String tipo_dieta, String experiencia) {
-        this.username = username;
-        this.password = password;
+    public Perfil_cliente(String nombre, String apellido, double peso, int altura, String tipo_dieta, String experiencia, String username, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.peso = peso;
         this.altura = altura;
         this.tipo_dieta = tipo_dieta;
         this.experiencia = experiencia;
+        this.username = username;
+        this.password = password;
     }
-
 
     //ToString para poder ver los objetos de la clase//
     @Override
