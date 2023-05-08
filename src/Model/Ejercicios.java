@@ -8,7 +8,8 @@ String [] Espalda =new String[]{"Jalon al pecho","Remo en maquina","Remo con man
 String [] Pierna =new String[]{"Sentadilla","Sentadilla Bulgara","Prensa","Femoral de Pie","Femoral Tumbado"};
 String [] Brazo =new String[]{"Curl Biceps Mancuernas","Curl en Maquina","Press Frances en Polea"," Flexiones Apoyo Cerrado","Press con Barra"};
 
-public  SeleccionarEjercicios(){
+public  SeleccionarEjercicios(String ejercicioRandom){
+
 
 return null;
 }
