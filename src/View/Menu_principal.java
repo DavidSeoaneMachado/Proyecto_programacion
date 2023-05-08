@@ -94,6 +94,7 @@ public class Menu_principal {
         ventana.setBounds(0, 0, 1200, 800);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
+
     }
 
 
