@@ -83,6 +83,7 @@
         <border type="none"/>
         <children>
           <component id="760b2" class="javax.swing.JButton" binding="salirButton" default-binding="true">
+
             <constraints/>
             <properties>
               <text value="Salir"/>

@@ -30,6 +30,7 @@
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
               <text value=""/>
+
             </properties>
           </component>
           <component id="c33b2" class="javax.swing.JLabel">
