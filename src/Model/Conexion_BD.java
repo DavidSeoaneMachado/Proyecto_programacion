@@ -10,7 +10,7 @@ public class Conexion_BD {
      */
     public static Connection GetConexion() {
         Connection conexion = null;
-        String url = "jdbc:mysql://localhost:3306/JBDB?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+        String url = "jdbc:mysql://localhost:3306/proyecto?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
         String usuario = "root";
         String passwd = "admin";
         try {
