@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Inicio {
-  
+
     private static JFrame ventana = new JFrame("Verdanks Fiteness");
     private JButton crearPerfilButton;
     private JButton iniciarSesiónButton;
@@ -58,6 +58,5 @@ public class Inicio {
         ventana.setBounds(0, 0, 1200, 800);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
-
     }
 }
