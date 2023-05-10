@@ -4,7 +4,6 @@ public class Perfil_cliente {
 
     //Atributos del cliente//
     private int idCliente;
-
     private String nombre;
     private String apellido;
     private double peso;
@@ -23,6 +22,20 @@ public class Perfil_cliente {
 
     //Constructor para introducir datos sin el id (nombre, peso...)
     public Perfil_cliente(String nombre, String apellido, double peso, int altura, String tipo_dieta, String experiencia, String username, String password) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.peso = peso;
+        this.altura = altura;
+        this.tipo_dieta = tipo_dieta;
+        this.experiencia = experiencia;
+        this.username = username;
+        this.password = password;
+    }
+
+    //Constructor para el objeto auxiliar del Metodo de modificar perfil//
+    /*Puede que se cambie o busquemos otra forma de hacerlo*/
+    public Perfil_cliente(int idCliente, String nombre, String apellido, double peso, int altura, String tipo_dieta, String experiencia, String username, String password) {
+        this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.peso = peso;
