@@ -28,6 +28,7 @@ public class Menu_principal {
      */
     public Menu_principal() {
 
+        //Frase personalizada para el usuario en el header del menu principal//
         String texto_etiqueta = "Bienvenid@ " + controlador.getCliente_sesion_actual().getUsername() + ". ¿Que deseas hacer?";
         etiqueta_custom.setText(texto_etiqueta);
         nuevaDietaButton.addActionListener(new ActionListener() {
@@ -72,7 +73,8 @@ public class Menu_principal {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Editar_perfil.lanzar_ventana();
+                ventana.dispose();
             }
         });
         salirButton.addActionListener(new ActionListener() {
@@ -94,7 +96,6 @@ public class Menu_principal {
         ventana.setBounds(0, 0, 1200, 800);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
-
     }
 
 

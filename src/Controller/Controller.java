@@ -4,7 +4,7 @@ import Model.Perfil_cliente;
 import Model.Perfil_clienteDAO;
 import View.Inicio;
 
-
+import java.util.HashMap;
 
 public class Controller {
 
@@ -47,6 +47,14 @@ public class Controller {
         return cliente;
     }
 
-
+    /**
+     * Metodo que conecta la peticion de la vista de actualizar datos del cliente con el model
+     * @return el cliente con toda su información
+     */
+    public Perfil_cliente modificar_cliente(int id_cliente, String nombre, String apellido, double peso, int altura, String dieta, String experiencia, String username, String password){
+        Perfil_cliente auxiliar = new Perfil_cliente(id_cliente,nombre, apellido, peso, altura, dieta, experiencia, username, password);
+        cliente = auxiliar;
+        return perfilClienteDAO.actualizar_perfil(id_cliente, nombre, apellido, peso, altura, dieta, experiencia, username, password);
+    }
 
 }

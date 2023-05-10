@@ -15,9 +15,8 @@ public class Perfil_clienteDAO implements Perfil {
     private static final String SQL_DELETE = "DELETE FROM clientes WHERE id_usuario=?";
 
     //Metodos implementados de la interfaz Perfil//
-
     /**
-     * Busca un perfil dentro de la base de datos y te devuelve un objeto con sus caracteristicas
+     * Busca un perfil dentro de la base de datos para comprobar si existe y te devuelve un objeto con sus caracteristicas
      * @param user y contraseña del inicio de sesión
      * @return
      */
@@ -25,11 +24,10 @@ public class Perfil_clienteDAO implements Perfil {
     public Perfil_cliente buscar_perfil(String user, String contraseña) {
 
         //HashMap<Perfil_cliente, Boolean> resultado_busqueda = new HashMap<>();
+        Perfil_cliente cliente_sesion = new Perfil_cliente();
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
-        Perfil_cliente cliente_sesion = new Perfil_cliente();
 
         try {
             conn = Conexion_BD.GetConexion();
@@ -49,15 +47,11 @@ public class Perfil_clienteDAO implements Perfil {
                 cliente_sesion.setExperiencia(rs.getString(7));
                 cliente_sesion.setUsername(rs.getString(8));
                 cliente_sesion.setPassword(rs.getString(9));
-
                 Conexion_BD.close(stmt);
-
                 return cliente_sesion;
-
             } else {
                 return null;
             }
-
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
             return null;
@@ -66,7 +60,6 @@ public class Perfil_clienteDAO implements Perfil {
 
     /**
      * Genera un nuevo perfil de cliente y lo guarda en la BD
-     *
      * @param perfil
      * @return
      */
@@ -76,7 +69,6 @@ public class Perfil_clienteDAO implements Perfil {
         Connection conn = null;
         PreparedStatement stmt = null;
         try {
-
             conn = Conexion_BD.GetConexion();
             stmt = conn.prepareStatement(SQL_INSERT);
 
@@ -101,14 +93,44 @@ public class Perfil_clienteDAO implements Perfil {
 
     /**
      * Actualiza/modifica los datos de un perfil
-     *
-     * @param perfil
-     * @return
+     * @param id
+     * @param nombre
+     * @param apellido
+     * @param peso
+     * @param altura
+     * @param dieta
+     * @param experiencia
+     * @param username
+     * @param password
+     * @return el perfil del cliente actualizado con la información que haya cambiado
      */
     @Override
-    public Perfil_cliente actualizar_perfil(Perfil_cliente perfil) {
+    public Perfil_cliente actualizar_perfil(int id, String nombre, String apellido, double peso, int altura, String dieta, String experiencia, String username, String password) {
 
-        //POR IMPLEMENTAR//
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = Conexion_BD.GetConexion();
+            stmt = conn.prepareStatement(SQL_UPDATE);
+
+            stmt.setString(1, nombre);
+            stmt.setString(2,apellido);
+            stmt.setDouble(3,peso);
+            stmt.setInt(4, altura);
+            stmt.setString(5, dieta);
+            stmt.setString(6, experiencia);
+            stmt.setString(7, username);
+            stmt.setString(8, password);
+            stmt.setInt(9, id);
+
+            System.out.println("ejecutando query:" + SQL_UPDATE);
+            stmt.executeUpdate();
+            Conexion_BD.close(stmt);
+            System.out.println("Perfil modificado");
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
+
         return null;
     }
 
