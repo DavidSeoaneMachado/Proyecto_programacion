@@ -1,6 +1,5 @@
 package View;
 
-
 import Controller.Controller;
 
 import javax.swing.*;
@@ -70,5 +69,4 @@ public class Crear_perfil {
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
     }
-
 }
