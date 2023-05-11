@@ -30,12 +30,13 @@ CREATE TABLE `clientes` (
   `apellido` varchar(45) DEFAULT NULL,
   `peso` float DEFAULT NULL,
   `altura` int DEFAULT NULL,
+  `edad` int DEFAULT NULL,
   `tipo_dieta` varchar(45) DEFAULT NULL,
   `experiencia` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `id_cliente_UNIQUE` (`id_cliente`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +45,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'ret','ardo','dddd','hhhhh',45,78,'Deficit calórico (perder peso)','Poca experiencia'),(2,'Ded','das','hhhh','hffff',55.7,156,'Deficit calórico (perder peso)','Poca experiencia'),(4,'reta','pepi','ghghgh','ghghgh',66.5,12,'Deficit calórico (perder peso)','Poca experiencia'),(5,'Damian','123','Osvaldo','Beckham Ramirez',90,185,'Deficit calórico (perder peso)','Habituado a hacer deporte'),(6,'Fiuren','password','Fer','nan',45,888,'Deficit calórico (perder peso)','Poca experiencia'),(7,'poli','iop','yuyuu','ooooo',77,5,'Deficit calórico (perder peso)','Poca experiencia'),(8,'7y8yi7','yyyyyy','hiuyi','huihui',55,44,'Deficit calórico (perder peso)','Poca experiencia');
+INSERT INTO `clientes` VALUES (5,'Damian','123','Damian','Beckham Sanchez',94,190,25,'Deficit calórico (perder peso)','Habituado a hacer deporte'),(6,'Fiuren','password','Fer','nan',45,888,6,'Deficit calórico (perder peso)','Poca experiencia'),(7,'geri67','iop','Gerardo','Romero',77,148,60,'Mantenimiento','Poca experiencia'),(9,'Sandrita206','123456','Sandra','Lopez',80,190,23,'Mantenimiento','Veterano del Gym');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-11 16:44:59
+-- Dump completed on 2023-05-11 18:35:06
