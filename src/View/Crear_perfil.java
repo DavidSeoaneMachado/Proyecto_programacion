@@ -3,8 +3,7 @@ package View;
 import Controller.Controller;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class Crear_perfil {
 
@@ -25,6 +24,8 @@ public class Crear_perfil {
     private JTextField field_altura;
     private JComboBox box_experiencia;
     private JTextField field_usuario;
+    private JLabel edad;
+    private JTextField field_edad;
 
     public Crear_perfil() {
 
@@ -34,7 +35,7 @@ public class Crear_perfil {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                controlador.enviar_perfil_creado(field_nombre.getText(),field_apellido.getText(), Float.parseFloat(field_peso.getText()), Integer.parseInt(field_altura.getText()), (String) box_dieta.getSelectedItem(), (String) box_experiencia.getSelectedItem(), field_usuario.getText(), new String(field_password.getPassword()));
+                controlador.enviar_perfil_creado(field_nombre.getText(),field_apellido.getText(), Float.parseFloat(field_peso.getText()), Integer.parseInt(field_altura.getText()), Integer.parseInt(field_edad.getText()),  (String) box_dieta.getSelectedItem(), (String) box_experiencia.getSelectedItem(), field_usuario.getText(), new String(field_password.getPassword()));
                 Menu_principal.lanzar_ventana();
                 ventana.dispose();
             }

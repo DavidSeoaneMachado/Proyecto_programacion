@@ -22,8 +22,8 @@ public class Controller {
      * @param nombre, apellido, peso... que ha introducido el cliente
      * @return el objeto generado con los datos introducidos
      */
-    public Perfil_cliente enviar_perfil_creado(String nombre, String apellido, double peso, int altura, String dieta, String experiencia, String username, String password) {
-        cliente = new Perfil_cliente(nombre, apellido, peso, altura, dieta, experiencia, username, password );
+    public Perfil_cliente enviar_perfil_creado(String nombre, String apellido, double peso, int altura, int edad, String dieta, String experiencia, String username, String password) {
+        cliente = new Perfil_cliente(nombre, apellido, peso, altura, edad, dieta, experiencia, username, password );
         perfilClienteDAO.generar_perfil(cliente);
         return cliente;
     }
@@ -51,10 +51,19 @@ public class Controller {
      * Metodo que conecta la peticion de la vista de actualizar datos del cliente con el model
      * @return el cliente con toda su información
      */
-    public Perfil_cliente modificar_cliente(int id_cliente, String nombre, String apellido, double peso, int altura, String dieta, String experiencia, String username, String password){
-        Perfil_cliente auxiliar = new Perfil_cliente(id_cliente,nombre, apellido, peso, altura, dieta, experiencia, username, password);
+    public Perfil_cliente modificar_cliente(int id_cliente, String nombre, String apellido, double peso, int altura, int edad, String dieta, String experiencia, String username, String password){
+        Perfil_cliente auxiliar = new Perfil_cliente(id_cliente,nombre, apellido, peso, altura, edad, dieta, experiencia, username, password);
         cliente = auxiliar;
-        return perfilClienteDAO.actualizar_perfil(id_cliente, nombre, apellido, peso, altura, dieta, experiencia, username, password);
+        return perfilClienteDAO.actualizar_perfil(id_cliente, nombre, apellido, peso, altura, edad, dieta, experiencia, username, password);
+    }
+
+    /**
+     * Metodo que conecta la peticion de la vista de eliminar un cliente de la BD
+     * @param id
+     * @return el cliente con toda su información
+     */
+    public boolean eliminar_cliente (int id){
+        return perfilClienteDAO.eliminar_perfil(id);
     }
 
 }
