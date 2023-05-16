@@ -12,6 +12,7 @@ public class Perfil_cliente implements Perfil {
     private String experiencia;
 
 
+
     public Perfil_cliente() {} //constructor vacio
 
     public Perfil_cliente(int idCliente) { //constructor para buscar e identificar por id
