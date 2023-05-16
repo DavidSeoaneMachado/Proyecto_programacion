@@ -8,6 +8,7 @@ public class Perfil_cliente {
     private String apellido;
     private double peso;
     private int altura;
+    private int edad;
     private String tipo_dieta;
     private String experiencia;
     private String username;
@@ -21,11 +22,12 @@ public class Perfil_cliente {
     } //Constructor para identificar por ID
 
     //Constructor para introducir datos sin el id (nombre, peso...)
-    public Perfil_cliente(String nombre, String apellido, double peso, int altura, String tipo_dieta, String experiencia, String username, String password) {
+    public Perfil_cliente(String nombre, String apellido, double peso, int altura, int edad, String tipo_dieta, String experiencia, String username, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.peso = peso;
         this.altura = altura;
+        this.edad = edad;
         this.tipo_dieta = tipo_dieta;
         this.experiencia = experiencia;
         this.username = username;
@@ -34,12 +36,14 @@ public class Perfil_cliente {
 
     //Constructor para el objeto auxiliar del Metodo de modificar perfil//
     /*Puede que se cambie o busquemos otra forma de hacerlo*/
-    public Perfil_cliente(int idCliente, String nombre, String apellido, double peso, int altura, String tipo_dieta, String experiencia, String username, String password) {
+
+    public Perfil_cliente(int idCliente, String nombre, String apellido, double peso, int altura, int edad, String tipo_dieta, String experiencia, String username, String password) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.peso = peso;
         this.altura = altura;
+        this.edad = edad;
         this.tipo_dieta = tipo_dieta;
         this.experiencia = experiencia;
         this.username = username;
@@ -51,13 +55,14 @@ public class Perfil_cliente {
     public String toString() {
         return "Perfil_cliente{" +
                 "idCliente=" + idCliente +
-                ", username='" + username + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", peso=" + peso +
                 ", altura=" + altura +
+                ", edad=" + edad +
                 ", tipo_dieta='" + tipo_dieta + '\'' +
                 ", experiencia='" + experiencia + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 
@@ -131,6 +136,14 @@ public class Perfil_cliente {
 
     public void setExperiencia(String experiencia) {
         this.experiencia = experiencia;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
     //Fin de los getters/setters //
 

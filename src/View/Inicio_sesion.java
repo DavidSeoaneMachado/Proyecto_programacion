@@ -35,6 +35,8 @@ public class Inicio_sesion {
                     Menu_principal.lanzar_ventana();
                     ventana.dispose();
                     System.out.println("Sesión iniciada con exito");
+                } else {
+                    JOptionPane.showMessageDialog(null, "El usuario o la contraseña no se corresponden con los registrados. Vuelve a intentarlo");
                 }
             }
         });
