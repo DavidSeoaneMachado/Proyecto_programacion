@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Random;
+
 public class Ejercicios {
     //creacion de los arrays donde se van a almacenar los ejercicios
 
@@ -8,9 +10,20 @@ String [] Espalda =new String[]{"Jalon al pecho","Remo en maquina","Remo con man
 String [] Pierna =new String[]{"Sentadilla","Sentadilla Bulgara","Prensa","Femoral de Pie","Femoral Tumbado"};
 String [] Brazo =new String[]{"Curl Biceps Mancuernas","Curl en Maquina","Press Frances en Polea"," Flexiones Apoyo Cerrado","Press con Barra"};
 
-public  SeleccionarEjercicios(String ejercicioRandom){
+public void SeleccionarEjercicios(){
+    Random EjercicioRandom = new Random();
+    int primerejercicio = EjercicioRandom.nextInt(Pecho.length);
+    int segundoejercicio =EjercicioRandom.nextInt(Espalda.length);
+    int tercerejercicio=EjercicioRandom.nextInt(Pierna.length);
+
+    String ejercicio1=Pecho[primerejercicio];
+    String ejercicio2=Pecho[segundoejercicio];
+    String ejercicio3=Pecho[tercerejercicio];
+
+    System.out.println("Primer ejercicio  " + ejercicio1);
 
 
-return null;
+
+
 }
 }
