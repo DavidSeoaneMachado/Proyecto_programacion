@@ -27,7 +27,6 @@ public abstract class Dieta {
         int hombre = 2;
         int variable = 0;
 
-
         switch (variable) {
             if (cliente.sexo = mujer) {
                 TMB = 655 + (9.6 * cliente.getPeso() + (1.8 * cliente.getAltura() - (4.7 * cliente.getEdad())));
@@ -38,8 +37,11 @@ public abstract class Dieta {
             return TMB;
         } ;
     }
-
-public int Calcular_Hidratos(double peso,double altura, int edad, String FactorActividad){
+    /**
+     * Metodo que calcula los hidratos de carbono a consumir en funcion de las caracteristicas del cliente
+     * @param FactorActividad, peso ya registrado con determinadas caracteristicas y objetivos
+     */
+public int Calcular_Hidratos(double peso,String FactorActividad){
     //para calcular los hidratos de carbono, tenemos que tener en cuenta los requisitos del cliente ya que dependera si quire una definicion o encontrarse en una etapa de volumen
 
 double Gramos_Hidratos_Carbono;
@@ -65,21 +67,31 @@ switch ( factorActividadFisica){
     return Gramos_Hidratos_Carbono;
 }
 
-
+    /**
+     * Metodo que calcula las proteinas a consumir en funcion de las caracteristicas del cliente
+     * @param cliente, etapa ya registrado con determinadas caracteristicas y objetivos
+     */
     public double Calcular_Proteina(Perfil_cliente cliente,String etapa) {
+    int prote;
         if (etapa == volumen) {
-            return cliente.getPeso() * 1.2; //en volumen consideramos 1.2 gramos de proteina por Kg de peso
+            prote= (int) (cliente.getPeso() * 1.4);
+            return prote; //en volumen consideramos 1.2 gramos de proteina por Kg de peso
 
         } else if (etapa == definicion) {
-            return cliente.getPeso() * 1.6;//en volumen consideramos 1.6 gramos de proteina por Kg de peso
+            prote= (int) (cliente.getPeso() * 1.6);
+            return prote;//en volumen consideramos 1.6 gramos de proteina por Kg de peso
         } else if (etapa == mantenimiento) {
-            return cliente.getPeso() * 1.1; //en volumen consideramos 1.2 gramos de proteina por Kg de peso
+            prote= (int) (cliente.getPeso() * 1.1);
+            return prote; //en volumen consideramos 1.2 gramos de proteina por Kg de peso
         }
+        return 0;
     }
+    /**
+     * Metodo que calcula las grasas a consumir en funcion de las caracteristicas del cliente
+     * @param cliente, etapa ya registrado con determinadas caracteristicas y objetivos
+     */
+    public int Calcular_Grasas(Perfil_cliente cliente,String etapa){
 
-    public int Calcular_Grasas(int tasametabolica){
-
-        return tasametabolica;
     }
 
     public Mostrar_Datos (int hidrato, int prot, int fat) {
