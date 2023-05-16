@@ -8,7 +8,12 @@ public class Dieta {
 
 
     private JPanel panel1;
-    private JCheckBox checkBox1;
+    private JPanel Header;
+    private JLabel etiqueta_custom;
+    private JPanel Body;
+    private JPanel Footer;
+    private JButton salirButton;
+    private JTable table1;
 
     public Dieta() {
 

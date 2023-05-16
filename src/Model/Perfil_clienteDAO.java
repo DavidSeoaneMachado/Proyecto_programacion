@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Perfil_clienteDAO implements Perfil {
 
@@ -15,8 +13,10 @@ public class Perfil_clienteDAO implements Perfil {
     private static final String SQL_DELETE = "DELETE FROM clientes WHERE id_cliente=?";
 
     //Metodos implementados de la interfaz Perfil//
+
     /**
      * Busca un perfil dentro de la base de datos para comprobar si existe y te devuelve un objeto con sus caracteristicas
+     *
      * @param user y contraseña del inicio de sesión
      * @return
      */
@@ -51,6 +51,7 @@ public class Perfil_clienteDAO implements Perfil {
                 Conexion_BD.close(stmt);
                 return cliente_sesion;
             } else {
+                System.out.println("No se han encontrado clientes con esos datos");
                 return null;
             }
         } catch (SQLException ex) {
@@ -61,6 +62,7 @@ public class Perfil_clienteDAO implements Perfil {
 
     /**
      * Genera un nuevo perfil de cliente y lo guarda en la BD
+     *
      * @param perfil
      * @return
      */
@@ -95,6 +97,7 @@ public class Perfil_clienteDAO implements Perfil {
 
     /**
      * Actualiza/modifica los datos de un perfil
+     *
      * @param id
      * @param nombre
      * @param apellido
@@ -117,8 +120,8 @@ public class Perfil_clienteDAO implements Perfil {
             stmt = conn.prepareStatement(SQL_UPDATE);
 
             stmt.setString(1, nombre);
-            stmt.setString(2,apellido);
-            stmt.setDouble(3,peso);
+            stmt.setString(2, apellido);
+            stmt.setDouble(3, peso);
             stmt.setInt(4, altura);
             stmt.setInt(5, edad);
             stmt.setString(6, dieta);
@@ -140,6 +143,7 @@ public class Perfil_clienteDAO implements Perfil {
 
     /**
      * Elimina un perfil de cliente
+     *
      * @param id
      * @return un booleano que indica el exito o no de la eliminación
      */
@@ -159,6 +163,35 @@ public class Perfil_clienteDAO implements Perfil {
             Conexion_BD.close(stmt);
             System.out.println("Perfil de cliente eliminado");
             return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            return false;
+        }
+    }
+
+    /**
+     * Busca el nombre de usuario que quiere introducir el nuevo cliente para comprobar si ya existe
+     * @param username
+     * @return un booleano que indica si existe o no el nombre de usuario
+     */
+    public boolean comprobar_user(String username) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = Conexion_BD.GetConexion();
+            stmt = conn.prepareStatement("SELECT * from clientes where username = ?");
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) { //si hay al menos un solo resultado es que existe el usuario//
+                Conexion_BD.close(stmt);
+               return true;
+            } else {
+                System.out.println("El username introducido por el cliente ya existe");
+                return false;
+            }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
             return false;

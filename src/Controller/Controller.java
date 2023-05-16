@@ -4,8 +4,6 @@ import Model.Perfil_cliente;
 import Model.Perfil_clienteDAO;
 import View.Inicio;
 
-import java.util.HashMap;
-
 public class Controller {
 
     static Perfil_cliente cliente;
@@ -64,6 +62,15 @@ public class Controller {
      */
     public boolean eliminar_cliente (int id){
         return perfilClienteDAO.eliminar_perfil(id);
+    }
+
+    /**
+     * Metodo que conecta la peticion de la vista de buscar un username de la BD
+     * @param username
+     * @return un booleano para confirmar si existe o no el username
+     */
+    public boolean comprobar_user_c(String username) {
+        return perfilClienteDAO.comprobar_user(username);
     }
 
 }
