@@ -39,7 +39,8 @@ public class Menu_principal {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Dieta.lanzar_ventana();
+                ventana.dispose();
             }
         });
         nuevoEntrenamientoButton.addActionListener(new ActionListener() {
