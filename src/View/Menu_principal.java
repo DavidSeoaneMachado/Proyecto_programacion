@@ -21,6 +21,8 @@ public class Menu_principal {
     private JButton editarPerfilButton;
     private JButton salirButton;
     private JLabel etiqueta_custom;
+    private JButton eliminar;
+    private JButton cerrarSesiónButton;
 
     /**
      * Constructor del entorno gráfico del menu principal
@@ -37,7 +39,8 @@ public class Menu_principal {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Dieta.lanzar_ventana();
+                ventana.dispose();
             }
         });
         nuevoEntrenamientoButton.addActionListener(new ActionListener() {
@@ -83,7 +86,29 @@ public class Menu_principal {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                System.exit(0);
+            }
+        });
+        eliminar.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlador.eliminar_cliente(controlador.getCliente_sesion_actual().getIdCliente());
+                JOptionPane.showMessageDialog(null, "Tu perfil ha sido eliminado. Volverás a la pantalla de Inicio");
+                Inicio.lanzar_ventana();
+                ventana.dispose();
+            }
+        });
+        cerrarSesiónButton.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Inicio.lanzar_ventana();
+                ventana.dispose();
             }
         });
     }

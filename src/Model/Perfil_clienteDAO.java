@@ -4,19 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Perfil_clienteDAO implements Perfil {
 
-    private static final String SQL_SELECT = "SELECT id_cliente, nombre, apellido, peso, altura, tipo_dieta, experiencia, username, password FROM clientes where username = ? and password = ?";
-    private static final String SQL_INSERT = "INSERT INTO clientes(nombre, apellido, peso, altura, tipo_dieta, experiencia, username, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE clientes SET nombre=?, apellido=?, peso=?, altura=?, tipo_dieta=?, experiencia=?, username=?, password=? WHERE id_cliente = ?";
-    private static final String SQL_DELETE = "DELETE FROM clientes WHERE id_usuario=?";
+    private static final String SQL_SELECT = "SELECT id_cliente, nombre, apellido, peso, altura, edad, tipo_dieta, experiencia, username, password FROM clientes where username = ? and password = ?";
+    private static final String SQL_INSERT = "INSERT INTO clientes(nombre, apellido, peso, altura, edad, tipo_dieta, experiencia, username, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE clientes SET nombre=?, apellido=?, peso=?, altura=?, edad=?, tipo_dieta=?, experiencia=?, username=?, password=? WHERE id_cliente = ?";
+    private static final String SQL_DELETE = "DELETE FROM clientes WHERE id_cliente=?";
 
     //Metodos implementados de la interfaz Perfil//
+
     /**
      * Busca un perfil dentro de la base de datos para comprobar si existe y te devuelve un objeto con sus caracteristicas
+     *
      * @param user y contraseña del inicio de sesión
      * @return
      */
@@ -43,13 +43,15 @@ public class Perfil_clienteDAO implements Perfil {
                 cliente_sesion.setApellido(rs.getString(3));
                 cliente_sesion.setPeso(rs.getDouble(4));
                 cliente_sesion.setAltura(rs.getInt(5));
-                cliente_sesion.setTipo_dieta(rs.getString(6));
-                cliente_sesion.setExperiencia(rs.getString(7));
-                cliente_sesion.setUsername(rs.getString(8));
-                cliente_sesion.setPassword(rs.getString(9));
+                cliente_sesion.setEdad(rs.getInt(6));
+                cliente_sesion.setTipo_dieta(rs.getString(7));
+                cliente_sesion.setExperiencia(rs.getString(8));
+                cliente_sesion.setUsername(rs.getString(9));
+                cliente_sesion.setPassword(rs.getString(10));
                 Conexion_BD.close(stmt);
                 return cliente_sesion;
             } else {
+                System.out.println("No se han encontrado clientes con esos datos");
                 return null;
             }
         } catch (SQLException ex) {
@@ -60,6 +62,7 @@ public class Perfil_clienteDAO implements Perfil {
 
     /**
      * Genera un nuevo perfil de cliente y lo guarda en la BD
+     *
      * @param perfil
      * @return
      */
@@ -76,10 +79,11 @@ public class Perfil_clienteDAO implements Perfil {
             stmt.setString(2, perfil.getApellido());
             stmt.setDouble(3, perfil.getPeso());
             stmt.setInt(4, perfil.getAltura());
-            stmt.setString(5, perfil.getTipo_dieta());
-            stmt.setString(6, perfil.getExperiencia());
-            stmt.setString(7, perfil.getUsername());
-            stmt.setString(8, perfil.getPassword());
+            stmt.setInt(5, perfil.getEdad());
+            stmt.setString(6, perfil.getTipo_dieta());
+            stmt.setString(7, perfil.getExperiencia());
+            stmt.setString(8, perfil.getUsername());
+            stmt.setString(9, perfil.getPassword());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             stmt.executeUpdate();
@@ -93,11 +97,13 @@ public class Perfil_clienteDAO implements Perfil {
 
     /**
      * Actualiza/modifica los datos de un perfil
+     *
      * @param id
      * @param nombre
      * @param apellido
      * @param peso
      * @param altura
+     * @param edad
      * @param dieta
      * @param experiencia
      * @param username
@@ -105,7 +111,7 @@ public class Perfil_clienteDAO implements Perfil {
      * @return el perfil del cliente actualizado con la información que haya cambiado
      */
     @Override
-    public Perfil_cliente actualizar_perfil(int id, String nombre, String apellido, double peso, int altura, String dieta, String experiencia, String username, String password) {
+    public Perfil_cliente actualizar_perfil(int id, String nombre, String apellido, double peso, int altura, int edad, String dieta, String experiencia, String username, String password) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -114,14 +120,15 @@ public class Perfil_clienteDAO implements Perfil {
             stmt = conn.prepareStatement(SQL_UPDATE);
 
             stmt.setString(1, nombre);
-            stmt.setString(2,apellido);
-            stmt.setDouble(3,peso);
+            stmt.setString(2, apellido);
+            stmt.setDouble(3, peso);
             stmt.setInt(4, altura);
-            stmt.setString(5, dieta);
-            stmt.setString(6, experiencia);
-            stmt.setString(7, username);
-            stmt.setString(8, password);
-            stmt.setInt(9, id);
+            stmt.setInt(5, edad);
+            stmt.setString(6, dieta);
+            stmt.setString(7, experiencia);
+            stmt.setString(8, username);
+            stmt.setString(9, password);
+            stmt.setInt(10, id);
 
             System.out.println("ejecutando query:" + SQL_UPDATE);
             stmt.executeUpdate();
@@ -137,14 +144,58 @@ public class Perfil_clienteDAO implements Perfil {
     /**
      * Elimina un perfil de cliente
      *
-     * @param perfil
-     * @return
+     * @param id
+     * @return un booleano que indica el exito o no de la eliminación
      */
     @Override
-    public boolean eliminar_perfil(Perfil_cliente perfil) {
+    public boolean eliminar_perfil(int id) {
 
-        //POR IMPLEMENTAR//
-        return false;
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = Conexion_BD.GetConexion();
+            stmt = conn.prepareStatement(SQL_DELETE);
+
+            stmt.setInt(1, id);
+
+            System.out.println("ejecutando query:" + SQL_DELETE);
+            stmt.executeUpdate();
+            Conexion_BD.close(stmt);
+            System.out.println("Perfil de cliente eliminado");
+            return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            return false;
+        }
+    }
+
+    /**
+     * Busca el nombre de usuario que quiere introducir el nuevo cliente para comprobar si ya existe
+     * @param username
+     * @return un booleano que indica si existe o no el nombre de usuario
+     */
+    public boolean comprobar_user(String username) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = Conexion_BD.GetConexion();
+            stmt = conn.prepareStatement("SELECT * from clientes where username = ?");
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) { //si hay al menos un solo resultado es que existe el usuario//
+                Conexion_BD.close(stmt);
+               return true;
+            } else {
+                System.out.println("El username introducido por el cliente ya existe");
+                return false;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            return false;
+        }
     }
     //Fin de los metodos de la interfaz//
 
