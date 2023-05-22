@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public class Perfil_clienteDAO implements Perfil {
 
-    private static final String SQL_SELECT = "SELECT id_cliente, nombre, apellido, peso, altura, edad, tipo_dieta, experiencia, username, password FROM clientes where username = ? and password = ?";
-    private static final String SQL_INSERT = "INSERT INTO clientes(nombre, apellido, peso, altura, edad, tipo_dieta, experiencia, username, password) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE clientes SET nombre=?, apellido=?, peso=?, altura=?, edad=?, tipo_dieta=?, experiencia=?, username=?, password=? WHERE id_cliente = ?";
+    private static final String SQL_SELECT = "SELECT id_cliente, nombre, apellido, peso, altura, edad, sexo, tipo_dieta, experiencia, username, password FROM clientes where username = ? and password = ?";
+    private static final String SQL_INSERT = "INSERT INTO clientes(nombre, apellido, peso, altura, edad,sexo, tipo_dieta, experiencia, username, password) VALUES(?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE clientes SET nombre=?, apellido=?, peso=?, altura=?, edad=?, sexo=?, tipo_dieta=?, experiencia=?, username=?, password=? WHERE id_cliente = ?";
     private static final String SQL_DELETE = "DELETE FROM clientes WHERE id_cliente=?";
 
     //Metodos implementados de la interfaz Perfil//
@@ -44,10 +44,11 @@ public class Perfil_clienteDAO implements Perfil {
                 cliente_sesion.setPeso(rs.getDouble(4));
                 cliente_sesion.setAltura(rs.getInt(5));
                 cliente_sesion.setEdad(rs.getInt(6));
-                cliente_sesion.setTipo_dieta(rs.getString(7));
-                cliente_sesion.setExperiencia(rs.getString(8));
-                cliente_sesion.setUsername(rs.getString(9));
-                cliente_sesion.setPassword(rs.getString(10));
+                cliente_sesion.setSexo(rs.getString(7));
+                cliente_sesion.setTipo_dieta(rs.getString(8));
+                cliente_sesion.setExperiencia(rs.getString(9));
+                cliente_sesion.setUsername(rs.getString(10));
+                cliente_sesion.setPassword(rs.getString(11));
                 Conexion_BD.close(stmt);
                 return cliente_sesion;
             } else {
@@ -80,10 +81,11 @@ public class Perfil_clienteDAO implements Perfil {
             stmt.setDouble(3, perfil.getPeso());
             stmt.setInt(4, perfil.getAltura());
             stmt.setInt(5, perfil.getEdad());
-            stmt.setString(6, perfil.getTipo_dieta());
-            stmt.setString(7, perfil.getExperiencia());
-            stmt.setString(8, perfil.getUsername());
-            stmt.setString(9, perfil.getPassword());
+            stmt.setString(6, perfil.getSexo());
+            stmt.setString(7, perfil.getTipo_dieta());
+            stmt.setString(8, perfil.getExperiencia());
+            stmt.setString(9, perfil.getUsername());
+            stmt.setString(10, perfil.getPassword());
 
             System.out.println("ejecutando query:" + SQL_INSERT);
             stmt.executeUpdate();
@@ -111,7 +113,7 @@ public class Perfil_clienteDAO implements Perfil {
      * @return el perfil del cliente actualizado con la información que haya cambiado
      */
     @Override
-    public Perfil_cliente actualizar_perfil(int id, String nombre, String apellido, double peso, int altura, int edad, String dieta, String experiencia, String username, String password) {
+    public Perfil_cliente actualizar_perfil(int id, String nombre, String apellido, double peso, int altura, int edad, String sexo, String dieta, String experiencia, String username, String password) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -124,11 +126,12 @@ public class Perfil_clienteDAO implements Perfil {
             stmt.setDouble(3, peso);
             stmt.setInt(4, altura);
             stmt.setInt(5, edad);
-            stmt.setString(6, dieta);
-            stmt.setString(7, experiencia);
-            stmt.setString(8, username);
-            stmt.setString(9, password);
-            stmt.setInt(10, id);
+            stmt.setString(6, sexo);
+            stmt.setString(7, dieta);
+            stmt.setString(8, experiencia);
+            stmt.setString(9, username);
+            stmt.setString(10, password);
+            stmt.setInt(11, id);
 
             System.out.println("ejecutando query:" + SQL_UPDATE);
             stmt.executeUpdate();

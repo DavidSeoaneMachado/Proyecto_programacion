@@ -26,6 +26,7 @@ public class Crear_perfil {
     private JTextField field_usuario;
     private JLabel edad;
     private JTextField field_edad;
+    private JComboBox box_sexo;
 
     public Crear_perfil() {
 
@@ -41,7 +42,7 @@ public class Crear_perfil {
                 } else if (controlador.comprobar_user_c(field_usuario.getText()) == true ){
                     JOptionPane.showMessageDialog(null, "El nombre de usuario introducido ya existe, prueba otro distinto");
                 } else {
-                    controlador.enviar_perfil_creado(field_nombre.getText(),field_apellido.getText(), Float.parseFloat(field_peso.getText()), Integer.parseInt(field_altura.getText()), Integer.parseInt(field_edad.getText()),  (String) box_dieta.getSelectedItem(), (String) box_experiencia.getSelectedItem(), field_usuario.getText(), new String(field_password.getPassword()));
+                    controlador.enviar_perfil_creado(field_nombre.getText(),field_apellido.getText(), Float.parseFloat(field_peso.getText()), Integer.parseInt(field_altura.getText()), Integer.parseInt(field_edad.getText()),(String) box_sexo.getSelectedItem(),  (String) box_dieta.getSelectedItem(), (String) box_experiencia.getSelectedItem(), field_usuario.getText(), new String(field_password.getPassword()));
                     Menu_principal.lanzar_ventana();
                     ventana.dispose();
                 }
@@ -69,7 +70,8 @@ public class Crear_perfil {
     }
 
     /**
-     * Lanza la ventana de la interfaz gráfica con una configuracion determinada e iniciando el constructor de la clase, lo que activa los listeners
+     * Lanza la ventana de la interfaz gráfica e inicializa el constructor de la clase
+     * inicia los listener de esta interfaz gráfica
      */
     public static void lanzar_ventana(){
         ventana.setContentPane(new Crear_perfil().panel1);

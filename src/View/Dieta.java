@@ -61,6 +61,10 @@ public class Dieta {
         info_label.setText("Esta es tu dieta de "+ controlador.getCliente_sesion_actual().getTipo_dieta() + " para los proximos 1/2 meses.");
 }
 
+    /**
+     * Lanza la ventana de la interfaz gráfica e inicializa el constructor de la clase
+     * inicia los listener de esta interfaz gráfica
+     */
     public static void lanzar_ventana(){
 
         ventana.setContentPane(new Dieta().panel1);
