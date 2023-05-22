@@ -62,7 +62,8 @@ public class Inicio_sesion {
     }
 
     /**
-     * Lanza la ventana de la interfaz grafica con una configuracion determinada e iniciando el constructor de la clase, lo que activa los listeners
+     * Lanza la ventana de la interfaz gráfica e inicializa el constructor de la clase
+     * inicia los listener de esta interfaz gráfica
      */
     public static void lanzar_ventana(){
         ventana.setContentPane(new Inicio_sesion().panel1);

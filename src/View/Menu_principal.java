@@ -95,10 +95,16 @@ public class Menu_principal {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                controlador.eliminar_cliente(controlador.getCliente_sesion_actual().getIdCliente());
-                JOptionPane.showMessageDialog(null, "Tu perfil ha sido eliminado. Volverás a la pantalla de Inicio");
-                Inicio.lanzar_ventana();
-                ventana.dispose();
+                Cuadro_de_dialogo dialogo = new Cuadro_de_dialogo();
+                if (dialogo.confirmacion_de_decision("¿Seguro que deseas eliminar tu perfil?")){
+                    controlador.eliminar_cliente(controlador.getCliente_sesion_actual().getIdCliente());
+                    JOptionPane.showMessageDialog(null, "Tu perfil ha sido eliminado. Volverás a la pantalla de Inicio");
+                    Inicio.lanzar_ventana();
+                    ventana.dispose();
+                } else {
+                    System.out.println("No se ha eliminado el perfil");
+                }
+
             }
         });
         cerrarSesiónButton.addActionListener(new ActionListener() {
@@ -114,7 +120,8 @@ public class Menu_principal {
     }
 
     /**
-     * Lanza la ventana de la interfaz grafica con una configuracion determinada e iniciando el constructor de la clase, lo que activa los listeners
+     * Lanza la ventana de la interfaz gráfica e inicializa el constructor de la clase
+     * inicia los listener de esta interfaz gráfica
      */
     public static void lanzar_ventana(){
         ventana.setContentPane(new Menu_principal().panel1);
