@@ -21,6 +21,8 @@ public void SeleccionarEjercicios(){
     String ejercicio3=Pecho[tercerejercicio];
 
     System.out.println("Primer ejercicio  " + ejercicio1);
+    System.out.println("Primer ejercicio  " + ejercicio2);
+    System.out.println("Primer ejercicio  " + ejercicio3);
 
 
 
