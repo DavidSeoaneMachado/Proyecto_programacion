@@ -1,43 +1,52 @@
 package View;
 
+import Controller.Controller;
+import Model.Perfil_cliente;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
-public class Inicio {
+public class Inicio_sesion {
 
-    private static JFrame ventana = new JFrame("Verdanks Fiteness");
-    private JButton crearPerfilButton;
-    private JButton iniciarSesiónButton;
-    private JPanel Inicio;
+    Controller controlador = new Controller();
+    private static JFrame ventana = new JFrame("Inicio de sesión");
     private JPanel Header;
-    private JPanel Body;
     private JPanel Footer;
     private JButton salirButton;
+    private JPanel Body;
+    private JButton iniciarSesiónButton;
+    private JPasswordField passwordField1;
+    private JTextField textField1;
+    private JPanel panel1;
+    private JButton Volver;
 
-    /**
-     * Constructor del entorno gráfico del inicio de la aplicacion
-     * inicia los listener de esta interfaz gráfica
-     */
-    public Inicio() {
+    public Inicio_sesion() {
 
-        crearPerfilButton.addActionListener(new ActionListener() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Crear_perfil.lanzar_ventana();
-                ventana.dispose();
-            }
-        });
         iniciarSesiónButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                Inicio_sesion.lanzar_ventana();
+
+                if (controlador.inicio_sesion(textField1.getText(), new String(passwordField1.getPassword()))!=null){
+                    Menu_principal.lanzar_ventana();
+                    ventana.dispose();
+                    System.out.println("Sesión iniciada con exito");
+                } else {
+                    JOptionPane.showMessageDialog(null, "El usuario o la contraseña no se corresponden con los registrados. Vuelve a intentarlo");
+                }
+            }
+        });
+        Volver.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Inicio.lanzar_ventana();
                 ventana.dispose();
             }
         });
@@ -56,11 +65,12 @@ public class Inicio {
      * Lanza la ventana de la interfaz gráfica e inicializa el constructor de la clase
      * inicia los listener de esta interfaz gráfica
      */
-    public static void lanzar_ventana() {
-
-        ventana.setContentPane(new Inicio().Inicio);
+    public static void lanzar_ventana(){
+        ventana.setContentPane(new Inicio_sesion().panel1);
         ventana.setBounds(0, 0, 1200, 800);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
     }
+
+
 }
