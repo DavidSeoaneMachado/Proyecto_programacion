@@ -10,6 +10,8 @@ public class Comidas {
     String[] cena = new String[]{"Merluza con ensalada", "Marisco", "Calamares a la plancha"};
 
     public void Escoger_Comida() {
+        //Se recoge de forma aleatoria una comida de cada lista de comidas
+
         Random ale = new Random();
         int desayunoAle = ale.nextInt(desayuno.length);
         int comidaAle = ale.nextInt(comida.length);

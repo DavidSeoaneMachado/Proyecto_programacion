@@ -11,18 +11,23 @@ public class Ejercicios {
     String[] Brazo = new String[]{"Curl Biceps Mancuernas", "Curl en Maquina", "Press Frances en Polea", " Flexiones Apoyo Cerrado", "Press con Barra"};
 
     public void SeleccionarEjercicios() {
+        //Se recoge de forma aleatoria un ejercicio de cada grupo muscular
         Random EjercicioRandom = new Random();
         int primerejercicio = EjercicioRandom.nextInt(Pecho.length);
         int segundoejercicio = EjercicioRandom.nextInt(Espalda.length);
         int tercerejercicio = EjercicioRandom.nextInt(Pierna.length);
+        int cuartoejercicio = EjercicioRandom.nextInt(Brazo.length);
+
 
         String ejercicio1 = Pecho[primerejercicio];
-        String ejercicio2 = Pecho[segundoejercicio];
-        String ejercicio3 = Pecho[tercerejercicio];
+        String ejercicio2 = Espalda[segundoejercicio];
+        String ejercicio3 = Pierna[tercerejercicio];
+        String ejercicio4 = Brazo[cuartoejercicio];
 
         System.out.println("Primer ejercicio  " + ejercicio1);
         System.out.println("Primer ejercicio  " + ejercicio2);
         System.out.println("Primer ejercicio  " + ejercicio3);
+        System.out.println("Cuarto ejercicio  " + ejercicio4);
 
 
     }
