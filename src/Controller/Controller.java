@@ -1,4 +1,5 @@
 package Controller;
+
 import Model.Perfil_cliente;
 import Model.Perfil_clienteDAO;
 import View.Inicio;
@@ -80,6 +81,7 @@ public class Controller {
 
     /**
      * Metodo que comprueba si el cliente ha realizado cambios en la opción Editar Perfil comparando dos objetos auxiliares
+     *
      * @param perfil1
      * @param perfil2
      * @return un booleano que informa de si ha habido cambios en el perfil o no

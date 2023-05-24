@@ -6,6 +6,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Dieta {
 
@@ -16,6 +18,8 @@ public class Dieta {
     public JPanel Body;
     private JLabel info_label;
     private JLabel info_label_2;
+    private JButton crearDietaButton;
+    private JButton volverButton;
 
 
     public Dieta() {
@@ -59,7 +63,30 @@ public class Dieta {
         }
 
         info_label.setText("Esta es tu dieta de "+ controlador.getCliente_sesion_actual().getTipo_dieta() + " para los proximos 1/2 meses.");
-}
+
+        volverButton.addActionListener(new ActionListener() {
+            /**
+             * @param e majenador del boton para volver a la ventana anterior
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Inicio.lanzar_ventana();
+                ventana.dispose();
+            }
+        });
+        crearDietaButton.addActionListener(new ActionListener() {
+            /**
+             * @param e majenador que saca un mensaje por ventana y lo muetra al usuario
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"Se ha generado una dieta según tus requisitos");
+            }
+        });
+
+
+
+    }
 
 
     /**
