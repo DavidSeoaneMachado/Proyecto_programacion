@@ -30,20 +30,21 @@ public abstract class Dieta {
         switch (variable) {
             if (cliente.sexo = mujer) {
                 TMB = 655 + (9.6 * cliente.getPeso() + (1.8 * cliente.getAltura() - (4.7 * cliente.getEdad())));
-            } else (cliente.sexo = hombre) {
+            }
+            else (cliente.sexo = hombre) {
                 TMB = 66 + (13.7 * cliente.getPeso() + (5 * cliente.getAltura() - (6.8 * cliente.getEdad())));
             }
-
-            return TMB;
         } ;
+        return TMB;
     }
+  
     /**
      * Metodo que calcula los hidratos de carbono a consumir en funcion de las caracteristicas del cliente
      * @param FactorActividad, peso ya registrado con determinadas caracteristicas y objetivos
      */
-public int Calcular_Hidratos(double peso,String FactorActividad){
+public int Calcular_Hidratos(int tasa,double peso,String FactorActividad){
     //para calcular los hidratos de carbono, tenemos que tener en cuenta los requisitos del cliente ya que dependera si quire una definicion o encontrarse en una etapa de volumen
-
+tasa=TMB;
 double Gramos_Hidratos_Carbono;
 double factorActividadFisica=0;
 

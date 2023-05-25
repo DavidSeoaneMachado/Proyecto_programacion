@@ -9,6 +9,7 @@ public class Perfil_cliente {
     private double peso;
     private int altura;
     private int edad;
+    private String sexo;
     private String tipo_dieta;
     private String experiencia;
     private String username;
@@ -23,49 +24,37 @@ public class Perfil_cliente {
     } //Constructor para identificar por ID
 
     //Constructor para introducir datos sin el id (nombre, peso...)
-    public Perfil_cliente(String nombre, String apellido, double peso, int altura, int edad, String tipo_dieta, String experiencia, String username, String password) {
+    public Perfil_cliente(String nombre, String apellido, double peso, int altura, int edad, String sexo, String tipo_dieta, String experiencia, String username, String password) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.peso = peso;
         this.altura = altura;
         this.edad = edad;
+        this.sexo = sexo;
         this.tipo_dieta = tipo_dieta;
         this.experiencia = experiencia;
         this.username = username;
         this.password = password;
     }
 
-    //Constructor para el objeto auxiliar del Metodo de modificar perfil//
-    /*Puede que se cambie o busquemos otra forma de hacerlo*/
 
-    public Perfil_cliente(int idCliente, String nombre, String apellido, double peso, int altura, int edad, String tipo_dieta, String experiencia, String username, String password) {
+    //Constructor para el objeto auxiliar del Metodo de modificar perfil//
+    public Perfil_cliente(int idCliente, String nombre, String apellido, double peso, int altura, int edad, String sexo, String tipo_dieta, String experiencia, String username, String password) {
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.peso = peso;
         this.altura = altura;
         this.edad = edad;
+        this.sexo = sexo;
         this.tipo_dieta = tipo_dieta;
         this.experiencia = experiencia;
         this.username = username;
         this.password = password;
     }
 
-    //ToString para poder ver los objetos de la clase//
-    @Override
-    public String toString() {
-        return "Perfil_cliente{" +
-                "idCliente=" + idCliente +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", peso=" + peso +
-                ", altura=" + altura +
-                ", edad=" + edad +
-                ", tipo_dieta='" + tipo_dieta + '\'' +
-                ", experiencia='" + experiencia + '\'' +
-                ", username='" + username + '\'' +
-                '}';
-    }
+    //ToString para poder ver los objetos de la clase (Sin uso por ahora)//
+
 
     //Getters y setters//
     public int getIdCliente() {
@@ -145,6 +134,14 @@ public class Perfil_cliente {
 
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
     //Fin de los getters/setters //
 
