@@ -6,6 +6,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Dieta {
 
@@ -16,7 +18,17 @@ public class Dieta {
     public JPanel Body;
     private JLabel info_label;
     private JLabel info_label_2;
+    private JButton volver;
 
+    JTable tabla;
+
+    public JTable getTabla() {
+        return tabla;
+    }
+
+    public void setTabla(JTable tabla) {
+        this.tabla = tabla;
+    }
 
     public Dieta() {
 
@@ -41,9 +53,9 @@ public class Dieta {
                         "3", 3}
 
         };
-        //Informacion de la tabla//
 
-        JTable tabla = new JTable(comidas, columnNames);
+        //Informacion de la tabla//
+        tabla = new JTable(comidas, columnNames);
         JTableHeader cabecera = tabla.getTableHeader();
         cabecera.setPreferredSize(new Dimension(1200,50));
 
@@ -59,7 +71,18 @@ public class Dieta {
         }
 
         info_label.setText("Esta es tu dieta de "+ controlador.getCliente_sesion_actual().getTipo_dieta() + " para los proximos 1/2 meses.");
-}
+        volver.addActionListener(new ActionListener() {
+            /**
+             * @param e the event to be processed
+             */
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Menu_principal.lanzar_ventana();
+                ventana.dispose();
+
+            }
+        });
+    }
 
 
     /**

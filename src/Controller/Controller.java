@@ -1,13 +1,14 @@
 package Controller;
-import Model.Perfil_cliente;
-import Model.Perfil_clienteDAO;
+
+import Model.*;
+import View.Dieta;
 import View.Inicio;
 
-import java.lang.reflect.Field;
 
 public class Controller {
     static Perfil_cliente cliente;
     static Perfil_clienteDAO perfilClienteDAO = new Perfil_clienteDAO();
+    static Gestion_de_ficheros gestionDeFicheros = new Gestion_de_ficheros();
 
     public static void main(String[] args) {
 
@@ -100,4 +101,33 @@ public class Controller {
             return true;
         }
     }
+
+    /**
+     * Metodo que conecta la peticion del cliente de imprimir un PDF con su rutina y dieta personal
+     * @return un booleano que refleja si ha habido errores
+     */
+    public boolean generar_pdf(){
+        Dieta dieta = new Dieta();
+        Generador_PDF generador = new Generador_PDF();
+        return generador.generar_pdf(dieta.getTabla());
+    }
+
+    /**
+     * Método que busca en el fichero JSON y sustituye la dieta o rutina existente (o no) por la nueva
+     * @param array_elementos
+     * @param nombre_fichero
+     */
+    public void escribir_ficheros(String[][] array_elementos, String nombre_fichero){
+        gestionDeFicheros.rellenar_ficheros(array_elementos,nombre_fichero);
+    };
+
+    /**
+     * Método que devuelve una amtriz con la dieta o rutina de ejercicios del cliente que ha iniciado sesión
+     * @param nombreArchivo
+     * @return
+     */
+    public String[][] leer_ficheros(String nombreArchivo){
+        return gestionDeFicheros.lectura_ficheros(nombreArchivo);
+    }
 }
+
