@@ -84,7 +84,6 @@ public class Dieta {
         });
     }
 
-
     /**
      * Lanza la ventana de la interfaz gráfica e inicializa el constructor de la clase
      * inicia los listener de esta interfaz gráfica

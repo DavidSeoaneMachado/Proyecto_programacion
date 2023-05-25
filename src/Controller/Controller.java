@@ -3,7 +3,10 @@ package Controller;
 import Model.*;
 import View.Dieta;
 import View.Inicio;
-
+import Model.Perfil_cliente;
+import Model.Perfil_clienteDAO;
+import View.Inicio;
+import java.lang.reflect.Field;
 
 public class Controller {
     static Perfil_cliente cliente;
@@ -122,7 +125,7 @@ public class Controller {
     };
 
     /**
-     * Método que devuelve una amtriz con la dieta o rutina de ejercicios del cliente que ha iniciado sesión
+     * Método que devuelve una matriz con la dieta o rutina de ejercicios del cliente que ha iniciado sesión
      * @param nombreArchivo
      * @return
      */
