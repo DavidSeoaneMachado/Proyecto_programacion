@@ -43,6 +43,7 @@ public class Crear_perfil {
                     JOptionPane.showMessageDialog(null, "El nombre de usuario introducido ya existe, prueba otro distinto");
                 } else {
                     controlador.enviar_perfil_creado(field_nombre.getText(),field_apellido.getText(), Float.parseFloat(field_peso.getText()), Integer.parseInt(field_altura.getText()), Integer.parseInt(field_edad.getText()),(String) box_sexo.getSelectedItem(),  (String) box_dieta.getSelectedItem(), (String) box_experiencia.getSelectedItem(), field_usuario.getText(), new String(field_password.getPassword()));
+                    JOptionPane.showMessageDialog(null, "Se ha generado tu perfil de cliente.");
                     Menu_principal.lanzar_ventana();
                     ventana.dispose();
                 }
