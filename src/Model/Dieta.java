@@ -37,6 +37,7 @@ public abstract class Dieta {
         } ;
         return TMB;
     }
+  
     /**
      * Metodo que calcula los hidratos de carbono a consumir en funcion de las caracteristicas del cliente
      * @param FactorActividad, peso ya registrado con determinadas caracteristicas y objetivos

@@ -71,6 +71,7 @@ public class Dieta {
         }
 
         info_label.setText("Esta es tu dieta de "+ controlador.getCliente_sesion_actual().getTipo_dieta() + " para los proximos 1/2 meses.");
+      
         volver.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed

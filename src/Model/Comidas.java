@@ -10,6 +10,7 @@ public class Comidas {
     String [] snak_merienda = new String[]{"Tortitas de arroz con jamon serrano", "Tortitas con lomo embuchado", "Yogurt natural y platano", "1/2 piezas de fruta", "100 gramos de pechuga de pavo/pollo"};
     String [] cena =new String[]{"Merluza con ensalada","Marisco","Calamares a la plancha", "Ensalada de atún", "Atún con pasta"};
 
+
     public void Escoger_Comida(){
         Random ale = new Random();
         int desayunoAle = ale.nextInt(desayuno.length);
@@ -22,3 +23,4 @@ public class Comidas {
 
     }
 }
+

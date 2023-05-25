@@ -8,6 +8,7 @@ import Model.Perfil_clienteDAO;
 import View.Inicio;
 import java.lang.reflect.Field;
 
+
 public class Controller {
     static Perfil_cliente cliente;
     static Perfil_clienteDAO perfilClienteDAO = new Perfil_clienteDAO();
@@ -74,7 +75,6 @@ public class Controller {
 
     /**
      * Metodo que conecta la peticion de la vista de buscar un username de la BD
-     *
      * @param username
      * @return un booleano para confirmar si existe o no el username
      */
