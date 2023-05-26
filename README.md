@@ -6,9 +6,10 @@ Dicha aplicación va destinada al mundo de la salud y el deporte, en la que a tr
 
 Para la realización del proyecto, se han utilizado las siguientes librerías:
 
-1. Para la realizacion de los PDF´s, itextpdf5
-2. Para la base de datos, MySQL
-3. Las propias librerias de Java.
+1. Para la realizacion de los PDF´s, Itext5.
+2. Para la base de datos, MySQL Connector JAVA y JDBC.
+3. Gson para la lectura y escritura de ficheros JSON.
+4. Las propias librerias de Java.
 
 El funcionamiento de la aplicacion es la siguiente: 
 
