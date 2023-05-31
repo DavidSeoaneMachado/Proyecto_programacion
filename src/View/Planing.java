@@ -13,15 +13,18 @@ public class Planing {
     private JButton volverButton;
 
     public Planing() {
+
 /*
-
-
         if (controlador.getCliente_sesion_actual().getTipo_dieta()=="Superhabit"){
-            etiqueta_custom1 .setText( "Vas a ir al fallo en todas las series y descansar entre 3-4 minutos entre serie");
-        } else if (controlador.getCliente_sesion_actual().getTipo_dieta()=="Superhabit") {
-            etiqueta_custom1.setText( "Vas a ir casi al fallo en todas las series y descansar entre 3-4 minutos entre serie");
-        } else if (){
-
+            etiqueta_custom1 .setText( "Vas a ejercitarte al fallo, con series pesadas en todas las series y descansar entre 3-4 minutos entre serie");
+        } else if (controlador.getCliente_sesion_actual().getTipo_dieta()=="Mantenimiento") {
+            etiqueta_custom1.setText( "Todos los ejercicios se harán entre 15-20 repeticiones y un descanso de 1-2 minutos");
+        } else if (controlador.getCliente_sesion_actual().getTipo_dieta()=="Déficit")  {
+            etiqueta_custom1.setText( "En todos los ejercicios procura centrarte en el propio del músculo, 12-15 repeticiones y descanso máximo de 1 minuto");
+        }
+        else(controlador.getCliente_sesion_actual().getTipo_dieta()=="aire"{
+            System.out.println("No has usado una de las opciones ofrecidas.");
+            }
         }
 */
 
@@ -61,9 +64,6 @@ public class Planing {
         for (int i = 0; i < tabla.getColumnCount(); i++) {
             tabla.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
-
-
-
 
 
 
