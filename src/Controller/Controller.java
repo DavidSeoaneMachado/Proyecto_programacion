@@ -4,11 +4,14 @@ import Model.*;
 import View.Dieta;
 import View.Inicio;
 
+import java.util.ArrayList;
+
 
 public class Controller {
     static Perfil_cliente cliente;
     static Perfil_clienteDAO perfilClienteDAO = new Perfil_clienteDAO();
     static Gestion_de_ficheros gestionDeFicheros = new Gestion_de_ficheros();
+    static Observer_Experiencia observerExperiencia = new Observer_Experiencia();
 
     public static void main(String[] args) {
 
@@ -61,7 +64,6 @@ public class Controller {
 
     /**
      * Metodo que conecta la peticion de la vista de eliminar un cliente de la BD
-     *
      * @param id
      * @return el cliente con toda su información
      */
@@ -114,20 +116,36 @@ public class Controller {
 
     /**
      * Método que busca en el fichero JSON y sustituye la dieta o rutina existente (o no) por la nueva
-     * @param array_elementos
+     * @param arraylist_elementos
      * @param nombre_fichero
      */
-    public void escribir_ficheros(String[][] array_elementos, String nombre_fichero){
-        gestionDeFicheros.rellenar_ficheros(array_elementos,nombre_fichero);
+    public void escribir_ficheros(ArrayList<ArrayList<String>> arraylist_elementos, String nombre_fichero){
+        gestionDeFicheros.rellenar_ficheros(arraylist_elementos,nombre_fichero);
     };
 
     /**
-     * Método que devuelve una amtriz con la dieta o rutina de ejercicios del cliente que ha iniciado sesión
+     * Método que devuelve una matriz con la dieta o rutina de ejercicios del cliente que ha iniciado sesión
      * @param nombreArchivo
      * @return
      */
-    public String[][] leer_ficheros(String nombreArchivo){
+    public ArrayList<ArrayList<String>> leer_ficheros(String nombreArchivo){
         return gestionDeFicheros.lectura_ficheros(nombreArchivo);
     }
+
+    /**
+     * Método que es llamado después de que en Inicio_Sesion se lance la ventana del Menu_Principal e inicia el proceso del patron Observer para cambiar el nivel de experinecia del cliente
+     * En este caso se envia la variable a la que va a cambiar la experiencia de manera "forzada", ya que no hay manera de determinar cuanto tiempo lleva el cliente usando la app.
+     * Este cambio se ejecutará siempre cuando se inicie sesión por parte de un usuario.
+     */
+    public void cambio_observer(){
+
+        //añadimos el observer de los cambios//
+        perfilClienteDAO.addObserver(observerExperiencia);
+        String experiencia_nueva = "Veterano del Gym";
+        //lamamos al metodo que comienza el proceso y realiza el cambio de la BD//
+        perfilClienteDAO.metodo_cambios_observer(experiencia_nueva);
+
+    }
+
 }
 

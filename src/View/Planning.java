@@ -5,6 +5,7 @@ import Controller.Controller;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Planning {
 
@@ -20,8 +21,8 @@ public class Planning {
     public Planning(){
 
         etiqueta_custom.setText("Esta es tu planificación de dieta y ejercicios, " + controlador.getCliente_sesion_actual().getUsername());
-        String[][] matriz_aux =  controlador.leer_ficheros("Fichero_dieta.json");
-        String[][] matriz_aux_2 = controlador.leer_ficheros("Fichero_rutina.json");
+        ArrayList<ArrayList<String>> matriz_aux =  controlador.leer_ficheros("Fichero_dieta.json");
+        ArrayList<ArrayList<String>> matriz_aux_2 = controlador.leer_ficheros("Fichero_rutina.json");
 
         volver.addActionListener(new ActionListener() {
             /**
