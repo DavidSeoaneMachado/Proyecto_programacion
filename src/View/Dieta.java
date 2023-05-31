@@ -74,6 +74,7 @@ public class Dieta {
 
         volver.addActionListener(new ActionListener() {
             /**
+             * Volver desde la pantalla de dieta al menu principal
              * @param e the event to be processed
              */
             @Override
