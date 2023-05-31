@@ -1,12 +1,16 @@
 package Model;
 
+import Controller.Controller;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Observable;
 
-public class Perfil_clienteDAO implements Perfil {
+public class Perfil_clienteDAO extends Observable implements Perfil {
 
+    static Controller controlador = new Controller();
     private static final String SQL_SELECT = "SELECT id_cliente, nombre, apellido, peso, altura, edad, sexo, tipo_dieta, experiencia, username, password FROM clientes where username = ? and password = ?";
     private static final String SQL_INSERT = "INSERT INTO clientes(nombre, apellido, peso, altura, edad,sexo, tipo_dieta, experiencia, username, password) VALUES(?, ?, ?, ?,?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE clientes SET nombre=?, apellido=?, peso=?, altura=?, edad=?, sexo=?, tipo_dieta=?, experiencia=?, username=?, password=? WHERE id_cliente = ?";
@@ -174,6 +178,7 @@ public class Perfil_clienteDAO implements Perfil {
 
     /**
      * Busca el nombre de usuario que quiere introducir el nuevo cliente para comprobar si ya existe
+     *
      * @param username
      * @return un booleano que indica si existe o no el nombre de usuario
      */
@@ -190,7 +195,7 @@ public class Perfil_clienteDAO implements Perfil {
 
             if (rs.next()) { //si hay al menos un solo resultado es que existe el usuario//
                 Conexion_BD.close(stmt);
-               return true;
+                return true;
             } else {
                 System.out.println("El username introducido por el cliente ya existe");
                 return false;
@@ -201,5 +206,38 @@ public class Perfil_clienteDAO implements Perfil {
         }
     }
     //Fin de los metodos de la interfaz//
+
+    /**
+     * Metodo perteneciente al patron Observer que ejecuta el cambio en el nivel de experiencia del cliente.
+     * @param cambio
+     * @return el cambio realizado
+     */
+    public String metodo_cambios_observer(String cambio) {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = Conexion_BD.GetConexion();
+            stmt = conn.prepareStatement("UPDATE clientes SET experiencia=? WHERE id_cliente = ?");
+
+            stmt.setString(1, cambio);
+            stmt.setInt(2, controlador.getCliente_sesion_actual().getIdCliente());
+
+            System.out.println("ejecutando query:" + "UPDATE clientes SET experiencia=? WHERE id_cliente = ?");
+            stmt.executeUpdate();
+            Conexion_BD.close(stmt);
+            System.out.println("Experiencia actualizada");
+
+            // anotamos el cambio y lo notificamos
+            setChanged();
+            notifyObservers(cambio);
+
+            return cambio;
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            return null;
+        }
+    }
 
 }

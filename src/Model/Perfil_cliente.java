@@ -16,7 +16,6 @@ public class Perfil_cliente {
     private String password;
 
 
-
     public Perfil_cliente() {} //constructor vacio
 
     public Perfil_cliente(int idCliente) { //constructor para buscar e identificar por id

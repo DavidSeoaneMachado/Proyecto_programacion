@@ -8,20 +8,31 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Gestion_de_ficheros {
 
     Controller controlador = new Controller();
-    HashMap<Integer, String[][]> hashMap = new HashMap<>();
+    HashMap<Integer, ArrayList<ArrayList<String>>> hashMap = new HashMap<>();
+    ArrayList<ArrayList<String>> matriz = new ArrayList<>();
 
-    public void rellenar_ficheros(String[][] matriz_elementos, String nombreArchivo) {
+    /**
+     * Metodo que lee el fichero, pasa la información a un Hashmap, añade o sustituye la nueva rutina o dieta
+     * generada para el usuario y vuelve a escribir toda la info en el fichero JSON
+     * @param matriz_elementos
+     * @param nombreArchivo
+     */
+    public void rellenar_ficheros(ArrayList<ArrayList<String>> matriz_elementos, String nombreArchivo) {
 
         try (FileReader fileReader = new FileReader(nombreArchivo)) {
             // Leer el fichero json
             Gson gson = new Gson();
-            Type type = new TypeToken<HashMap<Integer, String[][]>>() {
+
+            //El método getType() de la clase TypeToken (de la libreria Gson) se utiliza para obtener el objeto Type que representa el tipo de datos especificado.//
+            Type type = new TypeToken<HashMap<Integer,  ArrayList<ArrayList<String>>>>() {
             }.getType();
+            //se usa el objeto Type para especificar el tipo de objeto que se va a deserializar//
             hashMap = gson.fromJson(fileReader, type);
 
             // Eliminar la entrada correspondiente al ID del cliente actual
@@ -49,21 +60,25 @@ public class Gestion_de_ficheros {
         }
     }
 
+    /**
+     * Método que lee el fichero y devuelve la rutina o dieta según el archivo enviado por parámetros
+     * @param nombreArchivo
+     * @return una matriz
+     */
+    public ArrayList<ArrayList<String>> lectura_ficheros(String nombreArchivo) {
 
-    public String[][] lectura_ficheros(String nombreArchivo) {
-
-        String[][] matriz_devuelta;
+        ArrayList<ArrayList<String>> matriz_devuelta;
 
         try (FileReader fileReader = new FileReader(nombreArchivo)) {
             // Leer el fichero json
             Gson gson = new Gson();
-            Type type = new TypeToken<HashMap<Integer, String[][]>>() {
+            Type type = new TypeToken<HashMap<Integer, ArrayList<ArrayList<String>>>>() {
             }.getType();
             hashMap = gson.fromJson(fileReader, type);
 
             matriz_devuelta = hashMap.get(controlador.getCliente_sesion_actual().getIdCliente());
-            System.out.println("Se ha leido el fichero correctamente");
-            for (String[] fila : matriz_devuelta) {
+            System.out.println("Se ha leído el fichero correctamente");
+            for (ArrayList<String> fila : matriz_devuelta) {
                 for (String elemento : fila) {
                     System.out.print(elemento + " ");
                 }
@@ -77,6 +92,11 @@ public class Gestion_de_ficheros {
         }
     }
 
+    /**
+     * Método que lee el fichero comprueba la existencia de rutina y dieta para activar los botones de ver planning y descargar planning
+     * @param nombre_fichero
+     * @return un booleano
+     */
     public boolean comprobar_existencia_dieta_rutina(String nombre_fichero) {
 
         try (FileReader fileReader = new FileReader(nombre_fichero)) {
@@ -85,9 +105,11 @@ public class Gestion_de_ficheros {
             Type type = new TypeToken<HashMap<Integer, String[][]>>() {
             }.getType();
             hashMap = gson.fromJson(fileReader, type);
-            if (hashMap.containsKey(controlador.getCliente_sesion_actual().getIdCliente())){
+            if (hashMap==null){
+                return false;
+            } else if (hashMap.containsKey(controlador.getCliente_sesion_actual().getIdCliente())){
                 return true;
-            } else {
+            }else {
                 return false;
             }
 
