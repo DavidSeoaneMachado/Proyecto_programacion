@@ -1,12 +1,21 @@
 package View;
 
+import Controller.Controller;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.security.PublicKey;
 
 public class Planing {
+
+    static Controller controlador = new Controller();
+    private static JFrame salida = new JFrame("Planing");
+
+
     private JPanel Header;
     private JPanel Body;
     private JButton descargarDietaButton;
@@ -65,7 +74,18 @@ public class Planing {
             tabla.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
 
+descargarDietaButton.addActionListener(new ActionListener() {
+    /**
+     * @param e the event to be processed
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(null, "Planing Descargado");
+        Menu_principal.lanzar_ventana();
+        salida.dispose();
 
+    }
+});
 
 
     }
