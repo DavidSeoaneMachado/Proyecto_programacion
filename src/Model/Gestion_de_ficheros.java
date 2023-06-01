@@ -35,17 +35,20 @@ public class Gestion_de_ficheros {
             //se usa el objeto Type para especificar el tipo de objeto que se va a deserializar//
             hashMap = gson.fromJson(fileReader, type);
 
-            // Eliminar la entrada correspondiente al ID del cliente actual
+            // Eliminar la entrada correspondiente al ID del cliente actual si la hay
             if (hashMap == null) {
                 hashMap = new HashMap<>();
                 hashMap.put(controlador.getCliente_sesion_actual().getIdCliente(), matriz_elementos);
+                System.out.println("Se ha añadido la dieta/rutina");
             } else if (hashMap.containsKey(controlador.getCliente_sesion_actual().getIdCliente())) {
                 hashMap.remove(controlador.getCliente_sesion_actual().getIdCliente());
                 System.out.println("Entrada con ID " + controlador.getCliente_sesion_actual().getIdCliente() + " eliminada correctamente.");
                 hashMap.put(controlador.getCliente_sesion_actual().getIdCliente(), matriz_elementos);
+                System.out.println("Se ha sustituido la dieta/rutina");
             } else {
-                System.out.println("No se encontró ninguna entrada con ID " + controlador.getCliente_sesion_actual().getIdCliente() + ".");
+                System.out.println("No se encontró ninguna entrada previa con ID " + controlador.getCliente_sesion_actual().getIdCliente() + ".");
                 hashMap.put(controlador.getCliente_sesion_actual().getIdCliente(), matriz_elementos);
+                System.out.println("Se ha añadido la dieta/rutina");
             }
 
             // Escribir el HashMap actualizado en el archivo JSON
@@ -77,13 +80,6 @@ public class Gestion_de_ficheros {
             hashMap = gson.fromJson(fileReader, type);
 
             matriz_devuelta = hashMap.get(controlador.getCliente_sesion_actual().getIdCliente());
-            System.out.println("Se ha leído el fichero correctamente");
-            for (ArrayList<String> fila : matriz_devuelta) {
-                for (String elemento : fila) {
-                    System.out.print(elemento + " ");
-                }
-                System.out.println();
-            }
             return matriz_devuelta;
 
         } catch (IOException e) {

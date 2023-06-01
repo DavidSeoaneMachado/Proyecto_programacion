@@ -1,8 +1,8 @@
 package Controller;
 
 import Model.*;
-import View.Dieta;
 import View.Inicio;
+import View.Planning;
 
 import java.util.ArrayList;
 
@@ -109,9 +109,9 @@ public class Controller {
      * @return un booleano que refleja si ha habido errores
      */
     public boolean generar_pdf(){
-        Dieta dieta = new Dieta();
+        Planning planning = new Planning();
         Generador_PDF generador = new Generador_PDF();
-        return generador.generar_pdf(dieta.getTabla());
+        return generador.generar_pdf(planning.getTabla(), planning.getTabla2());
     }
 
     /**
@@ -145,6 +145,20 @@ public class Controller {
         //lamamos al metodo que comienza el proceso y realiza el cambio de la BD//
         perfilClienteDAO.metodo_cambios_observer(experiencia_nueva);
 
+    }
+
+    /**
+     *
+     */
+    public ArrayList<String> pasar_tips_rutina(){
+        return Ejercicios.Get_tips_rutina();
+    }
+
+    /**
+     *
+     */
+    public ArrayList<String> pasar_tips_dieta(){
+        return Comidas.Get_tips_dieta();
     }
 
 }
