@@ -2,6 +2,7 @@ package View;
 
 import Controller.Controller;
 import Model.Comidas;
+import Model.Ejercicios;
 import Model.Gestion_de_ficheros;
 import Model.Perfil_clienteDAO;
 
@@ -57,6 +58,12 @@ public class Menu_principal {
                     controlador.escribir_ficheros(Comidas.Get_comidas(), "src/recursos/Fichero_dieta.json");
                     JOptionPane.showMessageDialog(null, "Se ha generado una nueva dieta.");
                 }
+
+                //comprobación de si el cleinte tiene tanto dieta como rutina para activar los botones de Ver planning y Descargar planning
+                if (gestionDeFicheros.comprobar_existencia_dieta_rutina("src/recursos/Fichero_dieta.json") == false || gestionDeFicheros.comprobar_existencia_dieta_rutina("src/recursos/Fichero_rutina.json") == false) {
+                    verPlanningActualButton.setEnabled(false);
+                    descargarPlanningButton.setEnabled(false);
+                }
             }
         });
         nuevoEntrenamientoButton.addActionListener(new ActionListener() {
@@ -71,8 +78,14 @@ public class Menu_principal {
                         " Peso (" + controlador.getCliente_sesion_actual().getPeso() + "). ¿Estas de acuerdo?");
                 if (aux == true) {
                     //añadir metodo de nueva rutina de ejercicios//
-                    controlador.escribir_ficheros(Comidas.Get_comidas(), "src/recursos/Fichero_rutina.json");
+                    controlador.escribir_ficheros(Ejercicios.Get_ejercicios(), "src/recursos/Fichero_rutina.json");
                     JOptionPane.showMessageDialog(null, "Se ha generado una nueva rutina de ejercicios.");
+                }
+
+                //comprobación de si el cleinte tiene tanto dieta como rutina para activar los botones de Ver planning y Descargar planning
+                if (gestionDeFicheros.comprobar_existencia_dieta_rutina("src/recursos/Fichero_dieta.json") == false || gestionDeFicheros.comprobar_existencia_dieta_rutina("src/recursos/Fichero_rutina.json") == false) {
+                    verPlanningActualButton.setEnabled(false);
+                    descargarPlanningButton.setEnabled(false);
                 }
             }
         });
@@ -92,7 +105,11 @@ public class Menu_principal {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                controlador.generar_pdf();
+               if (controlador.generar_pdf()== true){
+                   JOptionPane.showMessageDialog(null,"Se ha generado tu PDF correctamente");
+               } else {
+                   JOptionPane.showMessageDialog(null,"Error en la generación de PDF");
+               }
 
             }
         });
