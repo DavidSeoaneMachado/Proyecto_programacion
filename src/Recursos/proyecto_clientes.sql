@@ -39,7 +39,7 @@ CREATE TABLE `clientes` (
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `id_cliente_UNIQUE` (`id_cliente`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (7,'geri67','iop','Gerardo','Romero',77,148,60,'Hombre','Mantenimiento','Poca experiencia'),(9,'Sandrita206','123456','Sandra','Lopez',80,190,23,'Hombre','Mantenimiento','Veterano del Gym'),(10,'1','1','Dandro','Sena',56,127,78,'Hombre','Deficit calórico (perder peso)','Poca experiencia');
+INSERT INTO `clientes` VALUES (9,'Sandrita206','123456','Sandra','Lopez',80,190,23,'Hombre','Mantenimiento','Veterano del Gym'),(15,'Deivid','123','David','Seoane',78,175,45,'Hombre','Deficit calórico (perder peso)','Veterano del Gym'),(16,'Fernandito456','a','Fernando','Lago',98,136,87,'Hombre','Superhabit calórico (ganar peso)','Veterano del Gym'),(17,'Lola','lola','Lola','Lopez',44,888,47,'Hombre','Deficit calórico (perder peso)','Veterano del Gym'),(18,'Sa','456','Sara','Lopez',77,888,555,'Hombre','Deficit calórico (perder peso)','Veterano del Gym'),(20,'Luci','33','Lucia','Lupa',47,89,54,'Hombre','Deficit calórico (perder peso)','Poca experiencia');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-22 11:38:56
+-- Dump completed on 2023-06-05 17:29:54
