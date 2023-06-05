@@ -37,7 +37,7 @@
             <properties>
               <font name="Arial Rounded MT Bold" size="16" style="1"/>
               <foreground color="-1"/>
-              <text value="Dieta:"/>
+              <text value="Dieta: 5 opciones distintas para cada comida del día"/>
             </properties>
           </component>
         </children>

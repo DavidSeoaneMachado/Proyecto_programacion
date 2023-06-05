@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+//Clase que gestiona la vista del planning del cliente compuesto por dieta y rutina de ejercicios//
 public class Planning {
 
     static Controller controlador = new Controller();
@@ -133,6 +134,9 @@ public class Planning {
         });
     }
 
+    /**
+     * Lanza la ventana de la interfaz gráfica e inicializa el constructor de la clase que inicializa los listener de esta interfaz gráfica
+     */
     public static void lanzar_ventana(){
         ventana.setContentPane(new Planning().panel1);
         ventana.setBounds(0, 0, 1200, 800);

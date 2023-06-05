@@ -1,15 +1,17 @@
 package Model;
 
 import Controller.Controller;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Phrase;
-
 import java.util.ArrayList;
 import java.util.List;
 
+//Clase que gestiona las comidas de la dieta y los consejos sobre la misma para el cliente//
 public class Comidas {
     static Controller controlador = new Controller();
 
+    /**
+     * Método que genera las comidas de la dieta entre las disponibles
+     * @return un arraylist con las comidas para la dieta
+     */
     public static ArrayList<ArrayList<String>> Get_comidas() {
 
         //Arraylists con las comidas
@@ -18,6 +20,7 @@ public class Comidas {
         ArrayList<String> snaks_merienda = new ArrayList<>(List.of("Tortitas de arroz con jamon serrano", "Tortitas con lomo embuchado", "Yogurt natural y platano", "1/2 piezas de fruta", "100 gramos de pechuga de pavo/pollo", "Tostada integral con jamon serrano y tomate", "Batido de platano, yugurt natural y avena", "Nueces con yogur y 1 pieza de fruta"));
         ArrayList<String> cenas = new ArrayList<>(List.of("Merluza con ensalada", "Marisco", "Calamares a la plancha", "Ensalada de atún", "Atún con pasta", "Patatas con ternera", "Boniato con pavo", "Merluza con patata cocida"));
 
+        //Bucle para eliminar de manera aleatoria ciertas comidas y poder generar distintos menus cada ocasión
         for (int i = 0; i < 3; i++) {
             int aleatorio = (int) Math.floor(Math.random() * ((desayunos.size() - 1) - 0 + 1) + 0);
             desayunos.remove(aleatorio);
@@ -34,9 +37,12 @@ public class Comidas {
         matriz_comidas.add(cenas);
 
         return matriz_comidas;
-
     }
 
+    /**
+     * Método que genera consejos para la dieta según las características y objetivos del cliente
+     * @return arraylist con los consejos
+     */
     public static ArrayList<String> Get_tips_dieta() {
 
         ArrayList<String> tips = new ArrayList<>();

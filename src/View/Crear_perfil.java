@@ -5,6 +5,7 @@ import Controller.Controller;
 import javax.swing.*;
 import java.awt.event.*;
 
+//Clase que gestiona la vista de creación de un nuevo perfil de cliente//
 public class Crear_perfil {
 
     static Controller controlador = new Controller();

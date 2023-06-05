@@ -11,15 +11,14 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//Clase que gestiona la escritura y lectura de ficheros//
 public class Gestion_de_ficheros {
 
     Controller controlador = new Controller();
     HashMap<Integer, ArrayList<ArrayList<String>>> hashMap = new HashMap<>();
-    ArrayList<ArrayList<String>> matriz = new ArrayList<>();
 
     /**
-     * Metodo que lee el fichero, pasa la información a un Hashmap, añade o sustituye la nueva rutina o dieta
-     * generada para el usuario y vuelve a escribir toda la info en el fichero JSON
+     * Metodo que lee el fichero, pasa la información a un Hashmap, añade o sustituye la nueva rutina o dieta generada para el usuario y vuelve a escribir toda la info en el fichero JSON
      * @param matriz_elementos
      * @param nombreArchivo
      */
@@ -89,7 +88,7 @@ public class Gestion_de_ficheros {
     }
 
     /**
-     * Método que lee el fichero comprueba la existencia de rutina y dieta para activar los botones de ver planning y descargar planning
+     * Método que lee el fichero y comprueba la existencia de rutina y dieta para activar los botones de ver planning y descargar planning
      * @param nombre_fichero
      * @return un booleano
      */

@@ -8,8 +8,6 @@ import java.util.Observer;
 
 public class Observer_Experiencia implements Observer {
 
-    static Controller controlador = new Controller();
-
     /**
      * Método que recibe el cambio realizado y llama a la vista para que informe del mismo
      * @param o   the observable object.

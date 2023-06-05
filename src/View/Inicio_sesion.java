@@ -1,13 +1,11 @@
 package View;
 
 import Controller.Controller;
-import Model.Perfil_cliente;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
+//Clase que gestiona la vista de inicio de sesión para el cliente//
 public class Inicio_sesion {
 
     Controller controlador = new Controller();

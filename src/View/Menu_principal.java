@@ -4,12 +4,11 @@ import Controller.Controller;
 import Model.Comidas;
 import Model.Ejercicios;
 import Model.Gestion_de_ficheros;
-import Model.Perfil_clienteDAO;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Clase que gestiona la vista del menu principal de la aplicación//
 public class Menu_principal {
 
     static Gestion_de_ficheros gestionDeFicheros = new Gestion_de_ficheros();
@@ -54,7 +53,6 @@ public class Menu_principal {
                         "(" + controlador.getCliente_sesion_actual().getTipo_dieta() + ") , Experiencia en el gimansio (" + controlador.getCliente_sesion_actual().getExperiencia() + ") " +
                         " Peso (" + controlador.getCliente_sesion_actual().getPeso() + "). ¿Estas de acuerdo?");
                 if (aux == true) {
-                    //añadir metodo de nueva rutina de ejercicios//
                     controlador.escribir_ficheros(Comidas.Get_comidas(), "src/recursos/Fichero_dieta.json");
                     JOptionPane.showMessageDialog(null, "Se ha generado una nueva dieta.");
                 }
@@ -77,7 +75,6 @@ public class Menu_principal {
                         "(" + controlador.getCliente_sesion_actual().getTipo_dieta() + ") , Experiencia en el gimansio (" + controlador.getCliente_sesion_actual().getExperiencia() + ") " +
                         " Peso (" + controlador.getCliente_sesion_actual().getPeso() + "). ¿Estas de acuerdo?");
                 if (aux == true) {
-                    //añadir metodo de nueva rutina de ejercicios//
                     controlador.escribir_ficheros(Ejercicios.Get_ejercicios(), "src/recursos/Fichero_rutina.json");
                     JOptionPane.showMessageDialog(null, "Se ha generado una nueva rutina de ejercicios.");
                 }
@@ -181,7 +178,6 @@ public class Menu_principal {
      * @param nueva_experiencia
      */
     public static void mostrar_cambio_observer(String nueva_experiencia) {
-
         JOptionPane.showMessageDialog(null, controlador.getCliente_sesion_actual().getUsername() + ", tu nivel de experiencia ha cambiado a: " + nueva_experiencia);
     }
 

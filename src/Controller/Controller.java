@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 
 public class Controller {
+
+    //Instancias del objeto cliente, su clase DAO, el gestor de ficheros y el patrón Observer
     static Perfil_cliente cliente;
     static Perfil_clienteDAO perfilClienteDAO = new Perfil_clienteDAO();
     static Gestion_de_ficheros gestionDeFicheros = new Gestion_de_ficheros();
@@ -25,8 +27,11 @@ public class Controller {
      * @return el objeto generado con los datos introducidos
      */
     public Perfil_cliente enviar_perfil_creado(String nombre, String apellido, double peso, int altura, int edad, String sexo, String dieta, String experiencia, String username, String password) {
+        //Primero creamos el objeto para enviar al método de creación de usuario con los datos correspondientes//
         cliente = new Perfil_cliente(nombre, apellido, peso, altura, edad, sexo, dieta, experiencia, username, password);
         perfilClienteDAO.generar_perfil(cliente);
+        //A continuación igualamos el objeto cliente al retorno del método buscar_perfil, ya que este devuelve el objeto cliente con Id, cosa que el anterior no hace//
+        cliente = perfilClienteDAO.buscar_perfil(username, password);
         return cliente;
     }
 
@@ -148,14 +153,16 @@ public class Controller {
     }
 
     /**
-     *
+     * Método que conecta la vista y el modelo para enviar los consejos personalizados sobre la rutina de ejercicios
+     * @return un arraylist con los consejos
      */
     public ArrayList<String> pasar_tips_rutina(){
         return Ejercicios.Get_tips_rutina();
     }
 
     /**
-     *
+     * Método que conecta la vista y el modelo para enviar los consejos personalizados sobre las comidas
+     * @return un arraylist con los consejos
      */
     public ArrayList<String> pasar_tips_dieta(){
         return Comidas.Get_tips_dieta();

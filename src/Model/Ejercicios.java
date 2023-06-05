@@ -5,10 +5,15 @@ import Controller.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+//Clase que gestiona los ejercicios de la rutina y los consejos sobre la misma para el cliente//
 public class Ejercicios {
 
     static Controller controlador = new Controller();
 
+    /**
+     * Método que genera los ejercicios de la rutina entre los disponibles
+     * @return un arraylist con los ejercicios
+     */
     public static ArrayList<ArrayList<String>> Get_ejercicios() {
 
         // arraylists donde se van a almacenar los ejercicios
@@ -17,6 +22,7 @@ public class Ejercicios {
         ArrayList<String> pierna = new ArrayList<>(List.of("Sentadilla", "Sentadilla Bulgara", "Prensa", "Femoral de Pie", "Femoral Tumbado", "Patada de glúteo en polea"));
         ArrayList<String> brazo = new ArrayList<>(List.of("Curl Biceps Mancuernas", "Curl en Maquina", "Press Frances en Polea", " Flexiones Apoyo Cerrado", "Press con Barra", "Curl martillo"));
 
+        //Bucle para eliminar de manera aleatoria ciertos ejercicios y poder generar distintas rutinas cada ocasión
         for (int i = 0; i < 2; i++) {
             int aleatorio = (int) Math.floor(Math.random() * ((pecho.size() - 1) - 0 + 1) + 0);
             pecho.remove(aleatorio);
@@ -35,6 +41,10 @@ public class Ejercicios {
         return matriz_ejercicios;
     }
 
+    /**
+     * Método que genera consejos para la rutina según las características y objetivos del cliente
+     * @return arraylist con los consejos
+     */
     public static ArrayList<String> Get_tips_rutina() {
 
         ArrayList<String> tips = new ArrayList<>();

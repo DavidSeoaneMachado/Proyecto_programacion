@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Clase que gestiona los distintos cuadros de diálogo que se usan en la aplicación//
 public class Cuadro_de_dialogo extends JDialog {
 
     private boolean confirmado;
@@ -61,7 +62,7 @@ public class Cuadro_de_dialogo extends JDialog {
     }
 
     /**
-     * Lanza un cuadro de dialogo para confirmar o no una decision del usuario
+     * Lanza un cuadro de dialogo para confirmar o no una decision del usuario pero en este caso más grande para abarcar todo el texto
      * @param mensaje
      * @return un booleano con la decision del usuario
      */

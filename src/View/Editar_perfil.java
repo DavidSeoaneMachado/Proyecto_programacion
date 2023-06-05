@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Clase que gestiona la vista de modificación de un perfil de cliente//
 public class Editar_perfil {
 
     Controller controlador = new Controller();

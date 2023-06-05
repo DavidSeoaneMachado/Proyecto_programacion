@@ -1,5 +1,6 @@
 package Model;
 
+//Clase que gestiona los objetos cliente y sus atributos//
 public class Perfil_cliente {
 
     //Atributos del cliente//
@@ -36,7 +37,6 @@ public class Perfil_cliente {
         this.password = password;
     }
 
-
     //Constructor para el objeto auxiliar del Metodo de modificar perfil//
     public Perfil_cliente(int idCliente, String nombre, String apellido, double peso, int altura, int edad, String sexo, String tipo_dieta, String experiencia, String username, String password) {
         this.idCliente = idCliente;
@@ -51,9 +51,6 @@ public class Perfil_cliente {
         this.username = username;
         this.password = password;
     }
-
-    //ToString para poder ver los objetos de la clase (Sin uso por ahora)//
-
 
     //Getters y setters//
     public int getIdCliente() {

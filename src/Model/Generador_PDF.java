@@ -4,19 +4,21 @@ import Controller.Controller;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-
 import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.lang.reflect.Array;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//Clase que gestiona la generación de un PDF con la rutina del cliente//
 public class Generador_PDF {
 
     Controller controlador = new Controller();
 
-    /*Metodo en construcción*/
+    /**
+     * Método que genera el PDF y plasma la información del planning del cliente
+     * @return un booleano confirmando o no el éxito
+     */
     public Boolean generar_pdf(JTable tabla1, JTable tabla2) {
 
         try {
@@ -25,21 +27,21 @@ public class Generador_PDF {
             PdfWriter.getInstance(document, new FileOutputStream(destino));
             document.open();
 
-            Paragraph header = new Paragraph("Verdansk Fitness");
+            Paragraph header = new Paragraph("-||- Verdansk Fitness -||-");
             header.setAlignment(Element.ALIGN_CENTER);
             document.add(header);
             document.add(new Chunk("\n"));  document.add(new Chunk("\n"));
 
-            Phrase p = new Phrase("Planning de dieta y rutina de ejercicios para " + controlador.getCliente_sesion_actual().getNombre() + " " + controlador.getCliente_sesion_actual().getApellido());
+            Phrase p = new Phrase("Planning de dieta y rutina de ejercicios para " + controlador.getCliente_sesion_actual().getNombre() + " " + controlador.getCliente_sesion_actual().getApellido() + ".");
             document.add(p);
             document.add(new Chunk("\n"));
 
-            Phrase p2 = new Phrase("Dieta de " + controlador.getCliente_sesion_actual().getTipo_dieta() + " y nivel de experiencia en el gimnasio: " + controlador.getCliente_sesion_actual().getExperiencia());
+            Phrase p2 = new Phrase("Dieta de " + controlador.getCliente_sesion_actual().getTipo_dieta() + " y nivel de experiencia en el gimnasio: " + controlador.getCliente_sesion_actual().getExperiencia()+ ".");
             document.add(p2);
             document.add(new Chunk("\n"));
             document.add(new Chunk("\n"));
 
-            Paragraph p3 = new Paragraph("Dieta");
+            Paragraph p3 = new Paragraph("|| Dieta. ||");
             p3.setAlignment(Element.ALIGN_CENTER);
             document.add(p3);
             document.add(new Chunk("\n"));
@@ -104,7 +106,8 @@ public class Generador_PDF {
                 document.add(new Chunk("\n"));
             }
 
-            Paragraph p4 = new Paragraph("Rutina de ejercicios");
+            document.add(new Chunk("\n"));
+            Paragraph p4 = new Paragraph("|| Rutina de ejercicios. ||");
             p4.setAlignment(Element.ALIGN_CENTER);
             document.add(p4);
             document.add(new Chunk("\n"));
@@ -139,6 +142,9 @@ public class Generador_PDF {
                 Phrase tip3 = new Phrase("-Busca que los descansos entre series sean de 2-3 minutos. Dependiendo de tu nivel de fatiga.");
                 document.add(tip3);
                 document.add(new Chunk("\n"));
+                Phrase tip4 = new Phrase("-Vas a hacer 4 series da cada ejercicio.");
+                document.add(tip4);
+                document.add(new Chunk("\n"));
             } else if (controlador.getCliente_sesion_actual().getTipo_dieta().equals("Deficit calórico (perder peso)")) {
                 Phrase tip1 = new Phrase("-Prioriza la técnica del ejercicio a la cantidad de peso que puedas tirar. Si te ves capaz sube los pesos, pero no es nuestra prioridad.");
                 document.add(tip1);
@@ -149,6 +155,9 @@ public class Generador_PDF {
                 Phrase tip3 = new Phrase("-Busca que los descansos entre series sean de 1-1'5 o como mucho 2 minutos.");
                 document.add(tip3);
                 document.add(new Chunk("\n"));
+                Phrase tip4 = new Phrase("-Vas a hacer 5 series da cada ejercicio.");
+                document.add(tip4);
+                document.add(new Chunk("\n"));
             } else if (controlador.getCliente_sesion_actual().getTipo_dieta().equals("Superhabit calórico (ganar peso)")) {
                 Phrase tip1 = new Phrase("-Prioriza la técnica del ejercicio a la cantidad de peso que puedas tirar. Una vez que tengas dominado el ejercicio con cierto peso busca progresar.");
                 document.add(tip1);
@@ -158,6 +167,9 @@ public class Generador_PDF {
                 document.add(new Chunk("\n"));
                 Phrase tip3 = new Phrase("-Busca que los descansos entre series sean de 3-4 o hasta 5 minutos. Buscamos que estes 100% preparado para cada serie, por lo que la recuperación es esencial.");
                 document.add(tip3);
+                document.add(new Chunk("\n"));
+                Phrase tip4 = new Phrase("-Vas a hacer 4-5 series da cada ejercicio.");
+                document.add(tip4);
                 document.add(new Chunk("\n"));
             }
 
