@@ -38,10 +38,6 @@ public class Menu_principal {
         String texto_etiqueta = "Bienvenid@ " + controlador.getCliente_sesion_actual().getUsername() + ". ¿Que deseas hacer?";
         etiqueta_custom.setText(texto_etiqueta);
 
-        if (gestionDeFicheros.comprobar_existencia_dieta_rutina("src/recursos/Fichero_dieta.json") == false || gestionDeFicheros.comprobar_existencia_dieta_rutina("src/recursos/Fichero_rutina.json") == false) {
-            verPlanningActualButton.setEnabled(false);
-            descargarPlanningButton.setEnabled(false);
-        }
         nuevaDietaButton.addActionListener(new ActionListener() {
             /**
              * @param e the event to be processed
@@ -55,12 +51,6 @@ public class Menu_principal {
                 if (aux == true) {
                     controlador.escribir_ficheros(Comidas.Get_comidas(), "src/recursos/Fichero_dieta.json");
                     JOptionPane.showMessageDialog(null, "Se ha generado una nueva dieta.");
-                }
-
-                //comprobación de si el cleinte tiene tanto dieta como rutina para activar los botones de Ver planning y Descargar planning
-                if (gestionDeFicheros.comprobar_existencia_dieta_rutina("src/recursos/Fichero_dieta.json") == false || gestionDeFicheros.comprobar_existencia_dieta_rutina("src/recursos/Fichero_rutina.json") == false) {
-                    verPlanningActualButton.setEnabled(false);
-                    descargarPlanningButton.setEnabled(false);
                 }
             }
         });
@@ -78,12 +68,6 @@ public class Menu_principal {
                     controlador.escribir_ficheros(Ejercicios.Get_ejercicios(), "src/recursos/Fichero_rutina.json");
                     JOptionPane.showMessageDialog(null, "Se ha generado una nueva rutina de ejercicios.");
                 }
-
-                //comprobación de si el cleinte tiene tanto dieta como rutina para activar los botones de Ver planning y Descargar planning
-                if (gestionDeFicheros.comprobar_existencia_dieta_rutina("src/recursos/Fichero_dieta.json") == false || gestionDeFicheros.comprobar_existencia_dieta_rutina("src/recursos/Fichero_rutina.json") == false) {
-                    verPlanningActualButton.setEnabled(false);
-                    descargarPlanningButton.setEnabled(false);
-                }
             }
         });
         verPlanningActualButton.addActionListener(new ActionListener() {
@@ -92,8 +76,14 @@ public class Menu_principal {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                Planning.lanzar_ventana();
-                ventana.dispose();
+
+                //comprobación de si el cliente tiene tanto dieta como rutina//
+                if (controlador.comprobar_existencia_dieta_rutina("src/recursos/Fichero_dieta.json") == false || controlador.comprobar_existencia_dieta_rutina("src/recursos/Fichero_rutina.json") == false) {
+                   JOptionPane.showMessageDialog(null, "Todavía no has generado una dieta y una rutina.");
+                } else {
+                    Planning.lanzar_ventana();
+                    ventana.dispose();
+                }
             }
         });
         descargarPlanningButton.addActionListener(new ActionListener() {
@@ -102,11 +92,17 @@ public class Menu_principal {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-               if (controlador.generar_pdf()== true){
-                   JOptionPane.showMessageDialog(null,"Se ha generado tu PDF correctamente");
-               } else {
-                   JOptionPane.showMessageDialog(null,"Error en la generación de PDF");
-               }
+
+                //comprobación de si el cliente tiene tanto dieta como rutina//
+                if (controlador.comprobar_existencia_dieta_rutina("src/recursos/Fichero_dieta.json") == false || controlador.comprobar_existencia_dieta_rutina("src/recursos/Fichero_rutina.json") == false) {
+                    JOptionPane.showMessageDialog(null, "Todavía no has generado una dieta y una rutina.");
+                } else {
+                    if (controlador.generar_pdf() == true) {
+                        JOptionPane.showMessageDialog(null, "Se ha generado tu PDF correctamente");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error en la generación de PDF");
+                    }
+                }
 
             }
         });
@@ -144,7 +140,6 @@ public class Menu_principal {
                 } else {
                     System.out.println("No se ha eliminado el perfil");
                 }
-
             }
         });
         cerrarSesiónButton.addActionListener(new ActionListener() {
@@ -157,8 +152,6 @@ public class Menu_principal {
                 ventana.dispose();
             }
         });
-
-
     }
 
     /**
@@ -170,7 +163,6 @@ public class Menu_principal {
         ventana.setBounds(0, 0, 1200, 800);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana.setVisible(true);
-
     }
 
     /**

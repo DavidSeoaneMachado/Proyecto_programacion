@@ -6,7 +6,6 @@ import View.Planning;
 
 import java.util.ArrayList;
 
-
 public class Controller {
 
     //Instancias del objeto cliente, su clase DAO, el gestor de ficheros y el patrón Observer
@@ -135,6 +134,15 @@ public class Controller {
      */
     public ArrayList<ArrayList<String>> leer_ficheros(String nombreArchivo){
         return gestionDeFicheros.lectura_ficheros(nombreArchivo);
+    }
+
+    /**
+     * Método que conecta la petición de la vista de comprobar la existencia de dieta y rutina para el cliente con el modelo
+     * @param nombre_archivo
+     * @return un booleano mostrando el estado de la operación
+     */
+    public boolean comprobar_existencia_dieta_rutina(String nombre_archivo){
+        return gestionDeFicheros.comprobar_existencia_dieta_rutina(nombre_archivo);
     }
 
     /**

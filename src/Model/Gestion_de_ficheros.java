@@ -4,9 +4,7 @@ import Controller.Controller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,12 +92,18 @@ public class Gestion_de_ficheros {
      */
     public boolean comprobar_existencia_dieta_rutina(String nombre_fichero) {
 
-        try (FileReader fileReader = new FileReader(nombre_fichero)) {
-            // Leer el fichero json
+        //InputStream inputStream = getClass().getResourceAsStream(nombre_fichero);
+        //try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream)) {
+
+        try (FileReader fileReader = new FileReader(nombre_fichero)) { //esta forma de inicializar los recursos dentro del paréntesis garantiza que se cierren
+            // correctamente al finalizar el bloque, sin necesidad de utilizar un bloque finally.
+
+            // Leemos el fichero json y pasamos us contenido a un Hashmap//
             Gson gson = new Gson();
             Type type = new TypeToken<HashMap<Integer, String[][]>>() {
             }.getType();
             hashMap = gson.fromJson(fileReader, type);
+            //comprobamos si el Hashmap (y por lo tanto el fichero) tiene una clave asociada al cliente//
             if (hashMap==null){
                 return false;
             } else if (hashMap.containsKey(controlador.getCliente_sesion_actual().getIdCliente())){

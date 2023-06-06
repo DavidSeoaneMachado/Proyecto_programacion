@@ -135,7 +135,7 @@ public class Planning {
     }
 
     /**
-     * Lanza la ventana de la interfaz gráfica e inicializa el constructor de la clase que inicializa los listener de esta interfaz gráfica
+     * Lanza la ventana de la interfaz gráfica e inicializar el constructor de la clase que inicializa los listener de esta interfaz gráfica
      */
     public static void lanzar_ventana(){
         ventana.setContentPane(new Planning().panel1);
