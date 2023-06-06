@@ -1,29 +1,82 @@
 package Model;
 
-import java.util.Random;
+import Controller.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+//Clase que gestiona los ejercicios de la rutina y los consejos sobre la misma para el cliente//
 public class Ejercicios {
-    //creacion de los arrays donde se van a almacenar los ejercicios
 
-    String[] Pecho = new String[]{"Press con Mancuernas", "Press Plano con Barra", "Cruces en Polea Baja", "Press Declinado", "Cruces en Polea Alta"};
-    String[] Espalda = new String[]{"Jalon al pecho", "Remo en maquina", "Remo con mancuernas", "Remo en Punta", "Remo en Polea Baja"};
-    String[] Pierna = new String[]{"Sentadilla", "Sentadilla Bulgara", "Prensa", "Femoral de Pie", "Femoral Tumbado"};
-    String[] Brazo = new String[]{"Curl Biceps Mancuernas", "Curl en Maquina", "Press Frances en Polea", " Flexiones Apoyo Cerrado", "Press con Barra"};
+    static Controller controlador = new Controller();
 
-    public void SeleccionarEjercicios() {
-        Random EjercicioRandom = new Random();
-        int primerejercicio = EjercicioRandom.nextInt(Pecho.length);
-        int segundoejercicio = EjercicioRandom.nextInt(Espalda.length);
-        int tercerejercicio = EjercicioRandom.nextInt(Pierna.length);
+    /**
+     * Método que genera los ejercicios de la rutina entre los disponibles
+     * @return un arraylist con los ejercicios
+     */
+    public static ArrayList<ArrayList<String>> Get_ejercicios() {
 
-        String ejercicio1 = Pecho[primerejercicio];
-        String ejercicio2 = Pecho[segundoejercicio];
-        String ejercicio3 = Pecho[tercerejercicio];
+        // arraylists donde se van a almacenar los ejercicios
+        ArrayList<String> pecho = new ArrayList<>(List.of("Press superior con Mancuernas", "Press Plano con Barra", "Cruces en Polea Baja", "Press Declinado", "Cruces en Polea Alta", "Aperturas"));
+        ArrayList<String> espalda = new ArrayList<>(List.of("Jalon al pecho", "Remo en maquina", "Remo con mancuernas", "Remo en Punta", "Remo en Polea Baja", "Trapecios con mancuernas"));
+        ArrayList<String> pierna = new ArrayList<>(List.of("Sentadilla", "Sentadilla Bulgara", "Prensa", "Femoral de Pie", "Femoral Tumbado", "Patada de glúteo en polea"));
+        ArrayList<String> brazo = new ArrayList<>(List.of("Curl Biceps Mancuernas", "Curl en Maquina", "Press Frances en Polea", " Flexiones Apoyo Cerrado", "Press con Barra", "Curl martillo"));
 
-        System.out.println("Primer ejercicio  " + ejercicio1);
-        System.out.println("Primer ejercicio  " + ejercicio2);
-        System.out.println("Primer ejercicio  " + ejercicio3);
+        //Bucle para eliminar de manera aleatoria ciertos ejercicios y poder generar distintas rutinas cada ocasión
+        for (int i = 0; i < 2; i++) {
+            int aleatorio = (int) Math.floor(Math.random() * ((pecho.size() - 1) - 0 + 1) + 0);
+            pecho.remove(aleatorio);
+            espalda.remove(aleatorio);
+            pierna.remove(aleatorio);
+            brazo.remove(aleatorio);
+        }
 
+        //Añadimos los ejercicios elegidos a la matriz resultante
+        ArrayList<ArrayList<String>> matriz_ejercicios = new ArrayList<>();
+        matriz_ejercicios.add(pecho);
+        matriz_ejercicios.add(espalda);
+        matriz_ejercicios.add(pierna);
+        matriz_ejercicios.add(brazo);
 
+        return matriz_ejercicios;
+    }
+
+    /**
+     * Método que genera consejos para la rutina según las características y objetivos del cliente
+     * @return arraylist con los consejos
+     */
+    public static ArrayList<String> Get_tips_rutina() {
+
+        ArrayList<String> tips = new ArrayList<>();
+
+        if (controlador.getCliente_sesion_actual().getTipo_dieta().equals("Mantenimiento")) {
+            String tip1 = "-Prioriza la técnica del ejercicio a la cantidad de peso que puedas tirar pero intentando progresar cada 1-2 semanas en esta última.";
+            tips.add(tip1);
+            String tip2 = "-Salvo en los ultimos 2 ejercicios no vas a ir al fallo. Vas a tirar mas o menos un 70-80% del maximo que podrias.";
+            tips.add(tip2);
+            String tip3 = "-Busca que los descansos entre series sean de 2-3 minutos. Dependiendo de tu nivel de fatiga.";
+            tips.add(tip3);
+            String tip4 = "-Vas a hacer 4 series da cada ejercicio.";
+            tips.add(tip4);
+        } else if (controlador.getCliente_sesion_actual().getTipo_dieta().equals("Deficit calórico (perder peso)")) {
+            String tip1 = "-Prioriza la técnica del ejercicio a la cantidad de peso que puedas tirar. Si te ves capaz sube los pesos, pero no es nuestra prioridad.";
+            tips.add(tip1);
+            String tip2 = "-Vas a ir al fallo en cada ejercicio pero priorizando un numero de repeticiones alto y no menor del indicado (siempre con un peso medianamente exigente.)";
+            tips.add(tip2);
+            String tip3 = "-Busca que los descansos entre series sean de 1-1'5 o como mucho 2 minutos.";
+            tips.add(tip3);
+            String tip4 = "-Vas a hacer 5 series da cada ejercicio.";
+            tips.add(tip4);
+        } else if (controlador.getCliente_sesion_actual().getTipo_dieta().equals("Superhabit calórico (ganar peso)")) {
+            String tip1 = "-Prioriza la técnica del ejercicio a la cantidad de peso que puedas tirar. Una vez que tengas dominado el ejercicio con cierto peso busca progresar.";
+            tips.add(tip1);
+            String tip2 = "-Vas a ir al fallo en cada ejercicio pero priorizando subir las cargas de peso. Estarás mas cerca de tirar menos repeticiones de las inidcadas por defecto que de tirar más. ";
+            tips.add(tip2);
+            String tip3 = "-Busca que los descansos entre series sean de 3-4 o hasta 5 minutos. Buscamos que estes 100% preparado para cada serie, por lo que la recuperación es esencial.";
+            tips.add(tip3);
+            String tip4 = "-Vas a hacer 4-5 series da cada ejercicio.";
+            tips.add(tip4);
+        }
+        return tips;
     }
 }

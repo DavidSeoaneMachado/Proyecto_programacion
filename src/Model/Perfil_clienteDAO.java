@@ -1,13 +1,13 @@
 package Model;
 
 import Controller.Controller;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Observable;
 
+//Clase que gestiona los metodos de la interfaz Perfil y las sentencias y consultas con la BD//
 public class Perfil_clienteDAO extends Observable implements Perfil {
 
     static Controller controlador = new Controller();
@@ -27,7 +27,6 @@ public class Perfil_clienteDAO extends Observable implements Perfil {
     @Override
     public Perfil_cliente buscar_perfil(String user, String contraseña) {
 
-        //HashMap<Perfil_cliente, Boolean> resultado_busqueda = new HashMap<>();
         Perfil_cliente cliente_sesion = new Perfil_cliente();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -67,7 +66,6 @@ public class Perfil_clienteDAO extends Observable implements Perfil {
 
     /**
      * Genera un nuevo perfil de cliente y lo guarda en la BD
-     *
      * @param perfil
      * @return
      */
@@ -103,7 +101,6 @@ public class Perfil_clienteDAO extends Observable implements Perfil {
 
     /**
      * Actualiza/modifica los datos de un perfil
-     *
      * @param id
      * @param nombre
      * @param apellido

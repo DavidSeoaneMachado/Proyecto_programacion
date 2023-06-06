@@ -1,6 +1,7 @@
 package Model;
 import java.sql.*;
 
+//Clase que gestiona la conexión a la base de datos de MySQL//
 public class Conexion_BD {
 
     /**

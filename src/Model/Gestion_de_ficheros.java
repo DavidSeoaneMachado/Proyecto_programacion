@@ -4,22 +4,19 @@ import Controller.Controller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//Clase que gestiona la escritura y lectura de ficheros//
 public class Gestion_de_ficheros {
 
     Controller controlador = new Controller();
     HashMap<Integer, ArrayList<ArrayList<String>>> hashMap = new HashMap<>();
-    ArrayList<ArrayList<String>> matriz = new ArrayList<>();
 
     /**
-     * Metodo que lee el fichero, pasa la información a un Hashmap, añade o sustituye la nueva rutina o dieta
-     * generada para el usuario y vuelve a escribir toda la info en el fichero JSON
+     * Metodo que lee el fichero, pasa la información a un Hashmap, añade o sustituye la nueva rutina o dieta generada para el usuario y vuelve a escribir toda la info en el fichero JSON
      * @param matriz_elementos
      * @param nombreArchivo
      */
@@ -35,17 +32,20 @@ public class Gestion_de_ficheros {
             //se usa el objeto Type para especificar el tipo de objeto que se va a deserializar//
             hashMap = gson.fromJson(fileReader, type);
 
-            // Eliminar la entrada correspondiente al ID del cliente actual
+            // Eliminar la entrada correspondiente al ID del cliente actual si la hay
             if (hashMap == null) {
                 hashMap = new HashMap<>();
                 hashMap.put(controlador.getCliente_sesion_actual().getIdCliente(), matriz_elementos);
+                System.out.println("Se ha añadido la dieta/rutina");
             } else if (hashMap.containsKey(controlador.getCliente_sesion_actual().getIdCliente())) {
                 hashMap.remove(controlador.getCliente_sesion_actual().getIdCliente());
                 System.out.println("Entrada con ID " + controlador.getCliente_sesion_actual().getIdCliente() + " eliminada correctamente.");
                 hashMap.put(controlador.getCliente_sesion_actual().getIdCliente(), matriz_elementos);
+                System.out.println("Se ha sustituido la dieta/rutina");
             } else {
-                System.out.println("No se encontró ninguna entrada con ID " + controlador.getCliente_sesion_actual().getIdCliente() + ".");
+                System.out.println("No se encontró ninguna entrada previa con ID " + controlador.getCliente_sesion_actual().getIdCliente() + ".");
                 hashMap.put(controlador.getCliente_sesion_actual().getIdCliente(), matriz_elementos);
+                System.out.println("Se ha añadido la dieta/rutina");
             }
 
             // Escribir el HashMap actualizado en el archivo JSON
@@ -77,13 +77,6 @@ public class Gestion_de_ficheros {
             hashMap = gson.fromJson(fileReader, type);
 
             matriz_devuelta = hashMap.get(controlador.getCliente_sesion_actual().getIdCliente());
-            System.out.println("Se ha leído el fichero correctamente");
-            for (ArrayList<String> fila : matriz_devuelta) {
-                for (String elemento : fila) {
-                    System.out.print(elemento + " ");
-                }
-                System.out.println();
-            }
             return matriz_devuelta;
 
         } catch (IOException e) {
@@ -93,18 +86,24 @@ public class Gestion_de_ficheros {
     }
 
     /**
-     * Método que lee el fichero comprueba la existencia de rutina y dieta para activar los botones de ver planning y descargar planning
+     * Método que lee el fichero y comprueba la existencia de rutina y dieta para activar los botones de ver planning y descargar planning
      * @param nombre_fichero
      * @return un booleano
      */
     public boolean comprobar_existencia_dieta_rutina(String nombre_fichero) {
 
-        try (FileReader fileReader = new FileReader(nombre_fichero)) {
-            // Leer el fichero json
+        //InputStream inputStream = getClass().getResourceAsStream(nombre_fichero);
+        //try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream)) {
+
+        try (FileReader fileReader = new FileReader(nombre_fichero)) { //esta forma de inicializar los recursos dentro del paréntesis garantiza que se cierren
+            // correctamente al finalizar el bloque, sin necesidad de utilizar un bloque finally.
+
+            // Leemos el fichero json y pasamos us contenido a un Hashmap//
             Gson gson = new Gson();
             Type type = new TypeToken<HashMap<Integer, String[][]>>() {
             }.getType();
             hashMap = gson.fromJson(fileReader, type);
+            //comprobamos si el Hashmap (y por lo tanto el fichero) tiene una clave asociada al cliente//
             if (hashMap==null){
                 return false;
             } else if (hashMap.containsKey(controlador.getCliente_sesion_actual().getIdCliente())){

@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Clase que gestiona la vista de inicio de la aplicación//
 public class Inicio {
 
     private static JFrame ventana = new JFrame("Verdanks Fiteness");

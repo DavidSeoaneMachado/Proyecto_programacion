@@ -1,13 +1,14 @@
 package Controller;
 
 import Model.*;
-import View.Dieta;
 import View.Inicio;
+import View.Planning;
 
 import java.util.ArrayList;
 
-
 public class Controller {
+
+    //Instancias del objeto cliente, su clase DAO, el gestor de ficheros y el patrón Observer
     static Perfil_cliente cliente;
     static Perfil_clienteDAO perfilClienteDAO = new Perfil_clienteDAO();
     static Gestion_de_ficheros gestionDeFicheros = new Gestion_de_ficheros();
@@ -25,8 +26,11 @@ public class Controller {
      * @return el objeto generado con los datos introducidos
      */
     public Perfil_cliente enviar_perfil_creado(String nombre, String apellido, double peso, int altura, int edad, String sexo, String dieta, String experiencia, String username, String password) {
+        //Primero creamos el objeto para enviar al método de creación de usuario con los datos correspondientes//
         cliente = new Perfil_cliente(nombre, apellido, peso, altura, edad, sexo, dieta, experiencia, username, password);
         perfilClienteDAO.generar_perfil(cliente);
+        //A continuación igualamos el objeto cliente al retorno del método buscar_perfil, ya que este devuelve el objeto cliente con Id, cosa que el anterior no hace//
+        cliente = perfilClienteDAO.buscar_perfil(username, password);
         return cliente;
     }
 
@@ -109,9 +113,9 @@ public class Controller {
      * @return un booleano que refleja si ha habido errores
      */
     public boolean generar_pdf(){
-        Dieta dieta = new Dieta();
+        Planning planning = new Planning();
         Generador_PDF generador = new Generador_PDF();
-        return generador.generar_pdf(dieta.getTabla());
+        return generador.generar_pdf(planning.getTabla(), planning.getTabla2());
     }
 
     /**
@@ -133,6 +137,15 @@ public class Controller {
     }
 
     /**
+     * Método que conecta la petición de la vista de comprobar la existencia de dieta y rutina para el cliente con el modelo
+     * @param nombre_archivo
+     * @return un booleano mostrando el estado de la operación
+     */
+    public boolean comprobar_existencia_dieta_rutina(String nombre_archivo){
+        return gestionDeFicheros.comprobar_existencia_dieta_rutina(nombre_archivo);
+    }
+
+    /**
      * Método que es llamado después de que en Inicio_Sesion se lance la ventana del Menu_Principal e inicia el proceso del patron Observer para cambiar el nivel de experinecia del cliente
      * En este caso se envia la variable a la que va a cambiar la experiencia de manera "forzada", ya que no hay manera de determinar cuanto tiempo lleva el cliente usando la app.
      * Este cambio se ejecutará siempre cuando se inicie sesión por parte de un usuario.
@@ -145,6 +158,22 @@ public class Controller {
         //lamamos al metodo que comienza el proceso y realiza el cambio de la BD//
         perfilClienteDAO.metodo_cambios_observer(experiencia_nueva);
 
+    }
+
+    /**
+     * Método que conecta la vista y el modelo para enviar los consejos personalizados sobre la rutina de ejercicios
+     * @return un arraylist con los consejos
+     */
+    public ArrayList<String> pasar_tips_rutina(){
+        return Ejercicios.Get_tips_rutina();
+    }
+
+    /**
+     * Método que conecta la vista y el modelo para enviar los consejos personalizados sobre las comidas
+     * @return un arraylist con los consejos
+     */
+    public ArrayList<String> pasar_tips_dieta(){
+        return Comidas.Get_tips_dieta();
     }
 
 }
